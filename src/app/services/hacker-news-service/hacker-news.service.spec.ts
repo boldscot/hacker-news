@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { HackerNewsService } from './hacker-news.service';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 
-describe('HackerNewsService', () => {
+fdescribe('HackerNewsService', () => {
   let service: HackerNewsService;
   let httpTestingController: HttpTestingController;
 
@@ -35,15 +35,19 @@ describe('HackerNewsService', () => {
     let req: TestRequest = httpTestingController.expectOne(`${environment.hackerNewsUrl}/maxitem.json`);
     expect(req.request.method).toBe('GET');
     req.flush(maxId);
-    httpTestingController.verify();
+  })
 
+  it('#getMaxItemId() should return Observable<null>', () => {
     // Testing failing request
     service.getMaxItemId().subscribe((response: number | null) => {
       expect(response).toBeNull();
     });
 
-    req = httpTestingController.expectOne(`${environment.hackerNewsUrl}/maxitem.json`);
+    let req = httpTestingController.expectOne(`${environment.hackerNewsUrl}/maxitem.json`);
     req.flush(null, {status: 401, statusText: 'Unauthorised'});
+  });
+
+  afterEach(() => {
     httpTestingController.verify();
-  })
+  });
 });
