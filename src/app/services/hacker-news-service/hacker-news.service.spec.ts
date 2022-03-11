@@ -1,6 +1,5 @@
 import { environment } from './../../../environments/environment';
 import { TestBed } from '@angular/core/testing';
-
 import { HackerNewsService } from './hacker-news.service';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 
@@ -14,7 +13,7 @@ describe('HackerNewsService', () => {
         HttpClientTestingModule,
       ],
       providers: [
-        HttpTestingController
+        HackerNewsService
       ]
     });
     service = TestBed.inject(HackerNewsService);
@@ -27,8 +26,8 @@ describe('HackerNewsService', () => {
 
   it('#getMaxItemId() should return Observable<number>', () => {
     const maxId = 9100012;
-
-    service.getMaxItemId().subscribe((response: number) => {
+    // Testing working request
+    service.getMaxItemId().subscribe((response: number | null) => {
       expect(response).toBeDefined();
       expect(response).toBe(maxId);
     });
@@ -38,7 +37,8 @@ describe('HackerNewsService', () => {
     req.flush(maxId);
     httpTestingController.verify();
 
-    service.getMaxItemId().subscribe((response: number) => {
+    // Testing failing request
+    service.getMaxItemId().subscribe((response: number | null) => {
       expect(response).toBeNull();
     });
 
