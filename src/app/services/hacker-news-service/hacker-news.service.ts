@@ -16,7 +16,10 @@ export class HackerNewsService {
    * @returns Observable<number> or Observable<null>
    */
   getMaxItemId(): Observable<number | null>{
-    return this.requestHandler<number>(`${environment.hackerNewsUrl}/maxitem.json`);
+    const request: Observable<HttpResponse<number>> = this.http.get<number>(`${environment.hackerNewsUrl}/maxitem.json`, {
+      observe: 'response'
+    });
+    return this.requestHandler(request);
   }
 
   /**
@@ -24,18 +27,19 @@ export class HackerNewsService {
    * @returns Observable<number[]> or Observable<null>
    */
   getTopStories(): Observable<number[] | null> {
-    return this.requestHandler<number[]>(`${environment.hackerNewsUrl}/topstories.json`);
+    const request: Observable<HttpResponse<number[]>> = this.http.get<number[]>(`${environment.hackerNewsUrl}/topstories.json`, {
+      observe: 'response'
+    });
+    return this.requestHandler(request);
   }
 
   /**
-   * Generic function that handles making requests, the response body from the requests will be of type 'T'
+   * Generic function that maps the HttpResponse to the response body of type 'T'
    * @param requestUrl The request url string
    * @returns Observable<T> or Observable<null>
    */
-  requestHandler<T>(requestUrl: string): Observable<T | null> {
-    return this.http.get<T>(requestUrl, {
-      observe: 'response'
-    }).pipe(
+  requestHandler<T>(request: Observable<HttpResponse<T>>): Observable<T | null> {
+    return request.pipe(
       map((response: HttpResponse<T>) => {
         return this.responseHandler<T>(response);
       }),
