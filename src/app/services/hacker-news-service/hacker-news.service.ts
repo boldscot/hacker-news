@@ -28,7 +28,7 @@ export class HackerNewsService {
   }
 
   /**
-   * Generic function that handles making requests, the response from the requests will be of type 'T'
+   * Generic function that handles making requests, the response body from the requests will be of type 'T'
    * @param requestUrl The request url string
    * @returns Observable<T> or Observable<null>
    */
