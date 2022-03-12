@@ -35,7 +35,7 @@ export class HackerNewsService {
 
   /**
    * Generic function that maps the HttpResponse to the response body of type 'T'
-   * @param requestUrl The request url string
+   * @param request The request url string
    * @returns Observable<T> or Observable<null>
    */
   requestHandler<T>(request: Observable<HttpResponse<T>>): Observable<T | null> {
