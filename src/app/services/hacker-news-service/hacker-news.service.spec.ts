@@ -6,6 +6,12 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 fdescribe('HackerNewsService', () => {
   let service: HackerNewsService;
   let httpTestingController: HttpTestingController;
+
+  const noContentHeaders = {
+    status: 204,
+    statusText: 'No Content'
+  }
+
   const failedRequestHeaders = {
     status: 401,
     statusText: 'Unauthorised'
@@ -51,6 +57,16 @@ fdescribe('HackerNewsService', () => {
     req.flush(null, failedRequestHeaders);
   });
 
+  it('#getMaxItemId() should return Observable<null>', () => {
+    // Testing working request but no content
+    service.getMaxItemId().subscribe((response: number | null) => {
+      expect(response).toBeNull();
+    });
+
+    let req = httpTestingController.expectOne(`${environment.hackerNewsUrl}/maxitem.json`);
+    req.flush(null, noContentHeaders);
+  });
+
   it('#getTopStories() should return Observable<number[]>', () => {
     const topStories = [12112,12113,12114,12115,12116,12117];
     // Testing working request
@@ -73,6 +89,17 @@ fdescribe('HackerNewsService', () => {
     let req: TestRequest = httpTestingController.expectOne(`${environment.hackerNewsUrl}/topstories.json`);
     expect(req.request.method).toBe('GET');
     req.flush(null, failedRequestHeaders);
+  });
+
+  it('#getTopStories() should return Observable<null>', () => {
+    // Testing working request but no content
+    service.getTopStories().subscribe((response: number[] | null) => {
+      expect(response).toBeNull();
+    });
+
+    let req: TestRequest = httpTestingController.expectOne(`${environment.hackerNewsUrl}/topstories.json`);
+    expect(req.request.method).toBe('GET');
+    req.flush(null, noContentHeaders);
   });
 
   afterEach(() => {
