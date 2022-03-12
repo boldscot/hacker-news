@@ -16,14 +16,7 @@ export class HackerNewsService {
    * @returns Observable<number> or Observable<null>
    */
   getMaxItemId(): Observable<number | null>{
-    return this.http.get<number>(`${environment.hackerNewsUrl}/maxitem.json`, {
-      observe: 'response'
-    }).pipe(
-      map((response: HttpResponse<number>) => {
-        return (response && response.status === 200)? response.body: null;
-      }),
-      catchError((err: HttpErrorResponse)=> this.handleError(err))
-    );
+    return this.requestHandler<number>(`${environment.hackerNewsUrl}/maxitem.json`);
   }
 
   /**
@@ -31,14 +24,32 @@ export class HackerNewsService {
    * @returns Observable<number[]> or Observable<null>
    */
   getTopStories(): Observable<number[] | null> {
-    return this.http.get<number[]>(`${environment.hackerNewsUrl}/topstories.json`, {
+    return this.requestHandler<number[]>(`${environment.hackerNewsUrl}/topstories.json`);
+  }
+
+  /**
+   * Generic function that handles making requests, the response from the requests will be of type 'T'
+   * @param requestUrl The request url string
+   * @returns Observable<T> or Observable<null>
+   */
+  requestHandler<T>(requestUrl: string): Observable<T | null> {
+    return this.http.get<T>(requestUrl, {
       observe: 'response'
     }).pipe(
-      map((response: HttpResponse<number[]>) => {
-        return (response && response.status === 200)? response.body: null;
+      map((response: HttpResponse<T>) => {
+        return this.responseHandler<T>(response);
       }),
       catchError((err: HttpErrorResponse)=> this.handleError(err))
     );
+  }
+
+  /**
+   * Generic function that checks the response status and returns
+   * @param response HttpResponse object with a body of type 'T'
+   * @returns 'T' or null
+   */
+  responseHandler<T>(response: HttpResponse<T>) {
+    return (response && response.status === 200)? response.body: null;
   }
 
   /**
