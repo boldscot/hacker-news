@@ -70,7 +70,7 @@ fdescribe('HackerNewsService', () => {
   it('#getTopStories() should return Observable<number[]>', () => {
     const topStories = [12112,12113,12114,12115,12116,12117];
     // Testing working request
-    service.getTopStories().subscribe((response: number[] | null) => {
+    service.getStories('topstories').subscribe((response: number[] | null) => {
       expect(response).toBeDefined();
       expect(response).toEqual(topStories);
     });
@@ -82,7 +82,7 @@ fdescribe('HackerNewsService', () => {
 
   it('#getTopStories() should return Observable<null>', () => {
     // Testing failing request
-    service.getTopStories().subscribe((response: number[] | null) => {
+    service.getStories('topstories').subscribe((response: number[] | null) => {
       expect(response).toBeNull();
     });
 
@@ -93,7 +93,7 @@ fdescribe('HackerNewsService', () => {
 
   it('#getTopStories() should return Observable<null>', () => {
     // Testing working request but no content
-    service.getTopStories().subscribe((response: number[] | null) => {
+    service.getStories('topstories').subscribe((response: number[] | null) => {
       expect(response).toBeNull();
     });
 

@@ -23,11 +23,11 @@ export class HackerNewsService {
   }
 
   /**
-   * Makes a GET request to get the top stories, which is an array of ids, from the Hacker News API
+   * Makes a GET request to get the stories from the given endpoint, which is an array of ids, from the Hacker News API
    * @returns Observable<number[]> or Observable<null>
    */
-  getTopStories(): Observable<number[] | null> {
-    const request: Observable<HttpResponse<number[]>> = this.http.get<number[]>(`${environment.hackerNewsUrl}/topstories.json`, {
+  getStories(endPoint: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'): Observable<number[] | null> {
+    const request: Observable<HttpResponse<number[]>> = this.http.get<number[]>(`${environment.hackerNewsUrl}/${endPoint}.json`, {
       observe: 'response'
     });
     return this.requestHandler(request);
