@@ -8,6 +8,7 @@ export const environment = {
     appId: '1:930824686568:web:34734dd67f08452519725d',
     storageBucket: 'hacker-news-55864.appspot.com',
     apiKey: 'AIzaSyAYAnnApJopzpOeIpQHadGo1Nhx1hWB_pI',
+    databaseURL: 'https://hacker-news.firebaseio.com/v0/',
     authDomain: 'hacker-news-55864.firebaseapp.com',
     messagingSenderId: '930824686568',
   },
