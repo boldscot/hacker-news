@@ -1,3 +1,4 @@
+import { HackerNewsFirebaseService } from './services/hacker-news-firebase-service/hacker-news-firebase.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'hacker-news';
 
-  constructor() {}
+  constructor(private hackerNewsFirebaseService: HackerNewsFirebaseService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.hackerNewsFirebaseService.getStories()
+      .subscribe(data => console.log(data))
+  }
 }

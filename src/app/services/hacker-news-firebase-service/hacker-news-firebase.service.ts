@@ -1,3 +1,4 @@
+import { list, Database, ref, object } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class HackerNewsFirebaseService {
 
-  constructor() { }
+  constructor(private database: Database) {}
+
+  getStories() {
+    return list(ref(this.database, '/v0/topstories'));
+  }
+
+  getMaxId() {
+    return object(ref(this.database, '/v0/maxitem'))
+  }
 }
