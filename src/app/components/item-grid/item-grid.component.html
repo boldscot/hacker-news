@@ -1,0 +1,6 @@
+<button (click)="incrementIndexs()"> Increment </button>
+<div class="container">
+  <div class="item" *ngFor="let id of (stories$ | async | slice:gridFirstItemIndex:gridLastItemIndex); index as i">
+    <app-item [itemId]="id"></app-item>
+  </div>
+</div>

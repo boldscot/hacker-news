@@ -4,12 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ItemComponent } from './components/item-component/item/item.component';
+import { ItemGridComponent } from './components/item-grid/item-grid.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemComponent
+    ItemComponent,
+    ItemGridComponent
   ],
   imports: [
     BrowserModule,
