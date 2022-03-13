@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ItemComponent } from './components/item-component/item/item.component';
 import { ItemGridComponent } from './components/item-grid/item-grid.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ItemGridComponent } from './components/item-grid/item-grid.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
 
   ],
   providers: [],
