@@ -2,6 +2,7 @@ import { environment } from './../../../environments/environment';
 import { TestBed } from '@angular/core/testing';
 import { HackerNewsService } from './hacker-news.service';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { Item } from 'src/app/model/item';
 
 fdescribe('HackerNewsService', () => {
   let service: HackerNewsService;
@@ -32,6 +33,49 @@ fdescribe('HackerNewsService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('#getItem() should return Observable<number>', () => {
+    const itemId = 101012;
+    const item: Item = {
+      id: itemId,
+      type: 'story'
+    }
+    // Testing working request
+    service.getItem(itemId).subscribe((response: Item | null) => {
+      expect(response).toBeDefined();
+      expect(response).toEqual(item);
+    });
+
+    let req: TestRequest = httpTestingController.expectOne(`${environment.hackerNewsUrl}/item/${itemId}.json`);
+    expect(req.request.method).toBe('GET');
+    req.flush(item);
+  });
+
+  it('#getItem() should return Observable<null>', () => {
+    const itemId = 657672;
+    // Testing failing request
+    service.getItem(itemId).subscribe((response: Item | null) => {
+      expect(response).toBeNull();
+    });
+
+    let req = httpTestingController.expectOne(`${environment.hackerNewsUrl}/item/${itemId}.json`);
+    req.flush(null, failedRequestHeaders);
+  });
+
+  it('#getItem() should return Observable<null>', () => {
+    const itemId = 3434012;
+    const item: Item = {
+      id: itemId,
+      type: 'job'
+    }
+    // Testing working request but no content
+    service.getItem(itemId).subscribe((response: Item | null) => {
+      expect(response).toBeNull();
+    });
+
+    let req = httpTestingController.expectOne(`${environment.hackerNewsUrl}/item/${itemId}.json`);
+    req.flush(null, noContentHeaders);
   });
 
   it('#getMaxItemId() should return Observable<number>', () => {
