@@ -8,6 +8,8 @@ import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-n
   styleUrls: ['./item-grid.component.scss']
 })
 export class ItemGridComponent implements OnInit {
+  colour: string = '#00213b';
+  border: string = 'solid white 2px';
 
   gridSize: number = 30;
   gridFirstItemIndex: number = 0;

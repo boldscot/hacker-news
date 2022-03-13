@@ -1,6 +1,19 @@
-<button (click)="incrementIndexs()"> Increment </button>
+
+
 <div class="container">
-  <div class="item" *ngFor="let id of (stories$ | async | slice:gridFirstItemIndex:gridLastItemIndex); index as i">
-    <app-item [itemId]="id"></app-item>
-  </div>
+  <button (click)="incrementIndexs()"> Increment </button>
+  <mat-grid-list cols="3" rowHeight="5:1" gutterSize="0.5%">
+    <mat-grid-tile
+        *ngFor="let id of (stories$ | async | slice:gridFirstItemIndex:gridLastItemIndex); index as i"
+
+        [style.background]='colour'
+
+        [style.color]="'white'"
+        [style.border]='border'>
+        <app-item [itemId]="id"></app-item>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
+
+
+
