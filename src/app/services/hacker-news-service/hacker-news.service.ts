@@ -13,7 +13,7 @@ export class HackerNewsService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Makes a GET request to gte the item for the given id from the Hacker News API
+   * Makes a GET request to get the item for the given id from the Hacker News API
    * @param itemId The id of the item to retrieve
    * @returns Observable<Item> or Observable<null>
    */
