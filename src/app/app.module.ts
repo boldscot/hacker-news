@@ -1,3 +1,4 @@
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,7 +7,7 @@ import { AppComponent } from './app.component';
 import { ItemComponent } from './components/item-component/item/item.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),
-
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
