@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
+import { Item } from 'src/app/model/item';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,18 @@ import { catchError, map } from 'rxjs/operators';
 export class HackerNewsService {
 
   constructor(private http: HttpClient) { }
+
+  /**
+   * Makes a GET request to gte the item for the given id from the Hacker News API
+   * @param itemId The id of the item to retrieve
+   * @returns Observable<Item> or Observable<null>
+   */
+  getItem(itemId: number): Observable<Item | null> {
+    const request: Observable<HttpResponse<Item>> = this.http.get<Item>(`${environment.hackerNewsUrl}/item/${itemId}.json`, {
+      observe: 'response'
+    });
+    return this.requestHandler(request);
+  }
 
   /**
    * Makes a GET request to get the max item id from the Hacker News API
@@ -24,6 +37,7 @@ export class HackerNewsService {
 
   /**
    * Makes a GET request to get the stories from the given endpoint, which is an array of ids, from the Hacker News API
+   * @param endPoint The story type to retrieve, must be one of the given literal types
    * @returns Observable<number[]> or Observable<null>
    */
   getStories(endPoint: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'): Observable<number[] | null> {
