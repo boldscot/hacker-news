@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "hacker-news:build:production",
+            "firebaseProject": "hacker-news-55864",
+            "firebaseHostingSite": "hacker-news-55864"
+          }
         }
       }
     }

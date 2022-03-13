@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ItemComponent } from './components/item-component/item/item.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 
 @NgModule({
@@ -14,6 +17,8 @@ import { ItemComponent } from './components/item-component/item/item.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideDatabase(() => getDatabase()),
 
   ],
   providers: [],

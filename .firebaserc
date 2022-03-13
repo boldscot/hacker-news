@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "hacker-news-55864": {
+      "hosting": {
+        "hacker-news": [
+          "hacker-news-55864"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "hacker-news-55864"
+  }
+}
