@@ -30,6 +30,7 @@ fdescribe('ItemComponent', () => {
   it('should invoke the getItem() function when the itemId setter is populated', () => {
     let wasInvoked: boolean = false;
     spyOn(component, 'getItem').and.callFake(() => wasInvoked = true);
+    expect(wasInvoked).toBeFalsy();
     component.itemId = 1;
     fixture.detectChanges();
     expect(wasInvoked).toBeTruthy();
