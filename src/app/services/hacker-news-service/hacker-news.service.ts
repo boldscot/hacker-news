@@ -55,19 +55,10 @@ export class HackerNewsService {
   requestHandler<T>(request: Observable<HttpResponse<T>>): Observable<T | null> {
     return request.pipe(
       map((response: HttpResponse<T>) => {
-        return this.responseHandler<T>(response);
+        return (response && response.status === 200)? response.body: null;
       }),
       catchError((err: HttpErrorResponse)=> this.handleError(err))
     );
-  }
-
-  /**
-   * Generic function that checks the response status and returns
-   * @param response HttpResponse object with a body of type 'T'
-   * @returns 'T' or null
-   */
-  responseHandler<T>(response: HttpResponse<T>) {
-    return (response && response.status === 200)? response.body: null;
   }
 
   /**
