@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
+  @Output() storyTypeSelectEmitter: EventEmitter<'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'>;
   storyTypes: string[] = ['topstories' , 'newstories' , 'beststories' , 'askstories' , 'showstories' , 'jobstories']
 
-  constructor() { }
+  constructor() {
+    this.storyTypeSelectEmitter = new EventEmitter();
+  }
 
-  ngOnInit(): void {
+  onStoryClickHandler(storyType: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories') {
+    this.storyTypeSelectEmitter.emit(storyType);
   }
 
 }
