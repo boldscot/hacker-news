@@ -1,3 +1,4 @@
+import { PipesModule } from './pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     MatGridListModule,
     MatIconModule,
+    PipesModule
   ],
   providers: [
 

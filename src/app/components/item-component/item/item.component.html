@@ -1,6 +1,8 @@
 <div class="container" *ngIf="(item$ | async); let itemVar;">
 
-  <div class="title"> {{ itemVar.title }} </div>
+  <div class="title">
+    {{ itemVar.title }} ({{ itemVar.url? (itemVar.url | getUrlDomain) : ''}})
+  </div>
 
   <div class="content">
     <div class="score">
