@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,7 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class ToolbarComponent {
   @Output() storyTypeSelectEmitter: EventEmitter<'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'>;
-  storyTypes: string[] = ['topstories' , 'newstories' , 'beststories' , 'askstories' , 'showstories' , 'jobstories']
+  storyTypes: string[] = ['topstories' , 'newstories' , 'beststories' , 'askstories' , 'showstories' , 'jobstories'];
 
   constructor() {
     this.storyTypeSelectEmitter = new EventEmitter();
