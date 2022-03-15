@@ -13,7 +13,6 @@ export class ItemGridComponent implements OnInit {
 
   gridSize: number = 30;
   gridFirstItemIndex: number = 0;
-  gridLastItemIndex: number = this.gridFirstItemIndex + this.gridSize;
 
   stories$!: Observable<number[] | null>;
 
@@ -25,7 +24,6 @@ export class ItemGridComponent implements OnInit {
 
   incrementIndexs() {
     this.gridFirstItemIndex+=this.gridSize;
-    this.gridLastItemIndex+=this.gridSize;
   }
 
 }

@@ -4,7 +4,7 @@
   <button (click)="incrementIndexs()"> Increment </button>
   <mat-grid-list cols="3" rowHeight="6:1" gutterSize="1%">
     <mat-grid-tile
-        *ngFor="let id of (stories$ | async | slice:gridFirstItemIndex:gridLastItemIndex); index as i"
+        *ngFor="let id of (stories$ | async | slice:gridFirstItemIndex:gridFirstItemIndex+gridSize); index as i"
 
         [style.background]="'#02263df7'"
         [style.color]="'white'"
