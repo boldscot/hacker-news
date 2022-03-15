@@ -9,6 +9,7 @@ import { ItemGridComponent } from './components/item-grid/item-grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     MatGridListModule,
     MatIconModule,
+    MatToolbarModule,
     PipesModule
   ],
   providers: [
