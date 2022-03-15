@@ -7,7 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ToolbarComponent {
   @Output() storyTypeSelectEmitter: EventEmitter<'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'>;
-  storyTypes: string[] = ['topstories' , 'newstories' , 'beststories' , 'askstories' , 'showstories' , 'jobstories'];
+  storyTypes: ('topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories')[]
+    = ['topstories' , 'newstories' , 'beststories' , 'askstories' , 'showstories' , 'jobstories'];
 
   constructor() {
     this.storyTypeSelectEmitter = new EventEmitter();
@@ -16,5 +17,4 @@ export class ToolbarComponent {
   onStoryClickHandler(storyType: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories') {
     this.storyTypeSelectEmitter.emit(storyType);
   }
-
 }

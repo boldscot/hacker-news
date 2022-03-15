@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <div class="site-name"> Hacker News </div>
     <div class="stories">
-      <div class="story" *ngFor="let type of storyTypes">
+      <div class="story" *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
         {{ type }}
       </div>
     </div>
