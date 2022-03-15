@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 
@@ -8,6 +8,10 @@ import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-n
   styleUrls: ['./item-grid.component.scss']
 })
 export class ItemGridComponent implements OnInit {
+  @Input() set storyType(type: "topstories" | "newstories" | "beststories" | "askstories" | "showstories" | "jobstories") {
+    this.stories$ = this.hackerNewsService.getStories(type);
+  }
+
   colour: string = '#2c9edad1';
   border: string = 'solid white 1px';
 
