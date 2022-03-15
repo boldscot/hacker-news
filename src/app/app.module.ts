@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component
     MatGridListModule,
     MatIconModule,
     MatToolbarModule,
+    MatButtonModule,
     PipesModule
   ],
   providers: [
