@@ -11,7 +11,7 @@ export class ItemGridComponent implements OnInit {
   colour: string = '#2c9edad1';
   border: string = 'solid white 1px';
 
-  gridSize: number = 27;
+  gridSize: number = 30;
   gridFirstItemIndex: number = 0;
   gridLastItemIndex: number = this.gridFirstItemIndex + this.gridSize;
 

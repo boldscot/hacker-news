@@ -1,0 +1,25 @@
+.toolbar {
+  width: 70%;
+  margin: auto;
+  background-color: rgb(2, 11, 18) !important;
+
+  .site-name {
+    font-size: 2rem;
+  }
+
+  .stories {
+    display: flex;
+    margin-left: 2rem;
+
+    .story {
+      cursor: pointer;
+      margin-left: 1rem;
+      font-size: 1rem;
+    }
+
+    .story:hover {
+      font-weight: bold;
+      color: rgb(128, 224, 245);
+    }
+  }
+}

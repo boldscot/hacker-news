@@ -1,5 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="toolbar">
   <mat-toolbar-row>
-    <span>Custom Toolbar</span>
+    <div class="site-name"> Hacker News </div>
+    <div class="stories">
+      <div class="story" *ngFor="let type of storyTypes">
+        {{ type }}
+      </div>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
