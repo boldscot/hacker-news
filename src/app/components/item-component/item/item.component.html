@@ -1,4 +1,20 @@
-<div class="wrapper" *ngIf="(item$ | async); let item;">
-  <div> {{ item.title }} </div>
-  <div> {{ item.score }} </div>
+<div class="container" *ngIf="(item$ | async); let itemVar;">
+
+  <div class="title"> {{ itemVar.title }} </div>
+
+  <div class="content">
+    <div class="score">
+      <mat-icon> thumb_up </mat-icon>
+      <div>
+        {{ itemVar.score }} points by <span href=""> {{ itemVar.by? itemVar.by: 'N/A' }} </span> @{{ itemVar.time? (itemVar.time | date: 'short'): 'N/A'}}
+      </div>
+    </div>
+
+    <div class="comment">
+      <mat-icon> comment </mat-icon>
+      <div class="comment-count">
+        {{ itemVar.descendants? itemVar.descendants: 0 }} Comments
+      </div>
+    </div>
+  </div>
 </div>

@@ -7,21 +7,24 @@ import { ItemComponent } from './components/item-component/item/item.component';
 import { ItemGridComponent } from './components/item-grid/item-grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemComponent,
-    ItemGridComponent
+    ItemGridComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

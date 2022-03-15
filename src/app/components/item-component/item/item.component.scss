@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+
+    .title {
+      width: 98%;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .content {
+      display: flex;
+
+      .score, .comment {
+        display: flex;
+        margin-right: 1rem;
+        font-size: 0.7rem;
+
+        div {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+}

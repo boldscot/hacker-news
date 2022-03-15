@@ -11,7 +11,7 @@ export class ItemGridComponent implements OnInit {
   colour: string = '#2c9edad1';
   border: string = 'solid white 1px';
 
-  gridSize: number = 30;
+  gridSize: number = 27;
   gridFirstItemIndex: number = 0;
   gridLastItemIndex: number = this.gridFirstItemIndex + this.gridSize;
 
@@ -20,7 +20,11 @@ export class ItemGridComponent implements OnInit {
   constructor(private hackerNewsService: HackerNewsService) { }
 
   ngOnInit(): void {
-    this.stories$ = this.hackerNewsService.getStories('newstories');
+    const url = 'https://www.mydomain.com/blog?search=hello&world';
+const domain = (new URL(url)).hostname.replace('www.','');
+console.log(domain);
+
+    this.stories$ = this.hackerNewsService.getStories('topstories');
   }
 
   incrementIndexs() {
