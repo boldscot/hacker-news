@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component';
+import { FrontPageComponent } from './components/front-page/front-page/front-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component
     ItemComponent,
     ItemGridComponent,
     ToolbarComponent,
+    FrontPageComponent,
   ],
   imports: [
     BrowserModule,
