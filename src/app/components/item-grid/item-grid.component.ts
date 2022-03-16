@@ -1,3 +1,4 @@
+import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
@@ -8,7 +9,7 @@ import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-n
   styleUrls: ['./item-grid.component.scss']
 })
 export class ItemGridComponent implements OnInit {
-  @Input() set storyType(type: "topstories" | "newstories" | "beststories" | "askstories" | "showstories" | "jobstories") {
+  @Input() set storyType(type: StoryType) {
     this.stories$ = this.hackerNewsService.getStories(type);
   }
 

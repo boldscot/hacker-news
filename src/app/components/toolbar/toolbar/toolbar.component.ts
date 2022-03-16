@@ -1,3 +1,4 @@
+import { StoryType } from './../../../customtypes/story-type';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -9,17 +10,17 @@ export class ToolbarComponent {
   /**
    * The Event Emitter passes the emiited value to its parent
    * The Emitter emits a value when a story is selected from the toolbar
-   * @type {(EventEmitter<'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'>)}
+   * @type {(EventEmitter<StoryType>)}
    * @memberof ToolbarComponent
    */
-  @Output() storyTypeSelectEmitter: EventEmitter<'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'>;
+  @Output() storyTypeSelectEmitter: EventEmitter<StoryType>;
 
   /**
    * Array of literal types used in the temnpate to display them in the toolbar
-   * @type {(('topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories')[])}
+   * @type {((StoryType)[])}
    * @memberof ToolbarComponent
    */
-  storyTypes: ('topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories')[]
+  storyTypes: StoryType[]
     = ['topstories' , 'newstories' , 'beststories' , 'askstories' , 'showstories' , 'jobstories'];
 
   constructor() {
@@ -30,7 +31,7 @@ export class ToolbarComponent {
    * Event handler for the click event on the toolbar story types
    * @param storyType The story type selected from the toolbar
    */
-  onStoryClickHandler(storyType: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories') {
+  onStoryClickHandler(storyType: StoryType) {
     this.storyTypeSelectEmitter.emit(storyType);
   }
 }

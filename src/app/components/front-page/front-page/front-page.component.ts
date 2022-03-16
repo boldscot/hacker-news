@@ -1,3 +1,4 @@
+import { StoryType } from './../../../customtypes/story-type';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,10 +9,10 @@ import { Component } from '@angular/core';
 export class FrontPageComponent {
   /**
    * Property that is passed to the item grid component's 'storyType' input property
-   * @type {('topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories')}
+   * @type {(StoryType)}
    * @memberof FrontPageComponent
    */
-  storyType: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories';
+  storyType: StoryType;
 
   constructor() {
     this.storyType = 'topstories';
@@ -21,7 +22,7 @@ export class FrontPageComponent {
    * Event handler for the storyType emitter in the toolbar component
    * @param type The story type that was selected on the toolbar
    */
-  onStoryClickHandler(type: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories') {
+  onStoryClickHandler(type: StoryType) {
     if (this.storyType !== type) this.storyType = type;
   }
 }

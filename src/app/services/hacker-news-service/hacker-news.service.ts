@@ -1,3 +1,4 @@
+import { StoryType } from './../../customtypes/story-type';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -40,7 +41,7 @@ export class HackerNewsService {
    * @param endPoint The story type to retrieve, must be one of the given literal types
    * @returns Observable<number[]> or Observable<null>
    */
-  getStories(endPoint: 'topstories' | 'newstories' | 'beststories' | 'askstories' | 'showstories' | 'jobstories'): Observable<number[] | null> {
+  getStories(endPoint: StoryType): Observable<number[] | null> {
     const request: Observable<HttpResponse<number[]>> = this.http.get<number[]>(`${environment.hackerNewsUrl}/${endPoint}.json`, {
       observe: 'response'
     });
