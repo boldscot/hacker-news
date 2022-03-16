@@ -1,7 +1,22 @@
 <div class="container" *ngIf="stories$ | async as stories">
-  <button (click)="updateFirstGridIndex(true, stories.length)"> More </button>
-  <button (click)="updateFirstGridIndex(false, 0)"> Old </button>
-  <mat-grid-list cols="3" rowHeight="6:1" gutterSize="1%">
+
+  <mat-toolbar class="toolbar">
+    <mat-toolbar-row>
+      <div class="button-container">
+        <button (click)="updateFirstGridIndex(false, 0)" mat-icon-button aria-label="Example icon button with a menu icon">
+          <mat-icon>arrow_back</mat-icon>
+          previous
+        </button>
+      </div>
+      <div class="button-container">
+        <button (click)="updateFirstGridIndex(true, stories.length)" mat-icon-button  aria-label="Example icon button with a menu icon">
+          more
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-grid-list cols="3" rowHeight="5:1" gutterSize="1%">
     <mat-grid-tile
         *ngFor="let id of (stories | slice:gridFirstItemIndex:gridFirstItemIndex+gridSize)"
 
