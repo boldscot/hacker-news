@@ -33,15 +33,14 @@ export class ItemGridComponent implements OnInit, OnDestroy {
   }
 
   updateFirstGridIndex(isIncrement: boolean, minMaxIndex: number) {
-    const currentIndex: number = this.gridFirstItemIndex;
-    let newIndex: number = currentIndex;
+    let newIndex: number = this.gridFirstItemIndex;
 
     if (isIncrement) {
-      newIndex = currentIndex + this.gridSize;
-      newIndex = (newIndex <= minMaxIndex)? newIndex: currentIndex;
+      newIndex = this.gridFirstItemIndex + this.gridSize;
+      newIndex = (newIndex <= minMaxIndex)? newIndex: this.gridFirstItemIndex;
     } else {
       newIndex= this.gridFirstItemIndex - this.gridSize;
-      newIndex = (newIndex >= minMaxIndex)? newIndex: currentIndex;
+      newIndex = (newIndex >= minMaxIndex)? newIndex: this.gridFirstItemIndex;
     }
     this.gridFirstItemIndex$.next(newIndex);
   }
