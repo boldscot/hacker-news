@@ -1,6 +1,6 @@
 import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, debounceTime, max, Observable, skip } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 
 @Component({
@@ -13,22 +13,39 @@ export class ItemGridComponent implements OnInit {
     this.stories$ = this.hackerNewsService.getStories(type);
   }
 
-  colour: string = '#2c9edad1';
-  border: string = 'solid white 1px';
-
-  gridSize: number = 30;
+  gridFirstItemIndex$: BehaviorSubject<number> = new BehaviorSubject(0);
   gridFirstItemIndex: number = 0;
-
+  gridSize: number = 30;
   stories$!: Observable<number[] | null>;
 
   constructor(private hackerNewsService: HackerNewsService) { }
 
   ngOnInit(): void {
+    this.gridFirstItemIndex$.pipe(
+      skip(1),
+      debounceTime(300)
+    ).subscribe((index: number) => {
+      this.gridFirstItemIndex = index
+    });
+
     this.stories$ = this.hackerNewsService.getStories('topstories');
   }
 
-  incrementIndexs() {
-    this.gridFirstItemIndex+=this.gridSize;
+  updateFirstGridIndex(isIncrement: boolean, minMaxIndex: number) {
+    const currentIndex: number = this.gridFirstItemIndex;
+    let newIndex: number = currentIndex;
+
+    if (isIncrement) {
+      newIndex = currentIndex + this.gridSize;
+      newIndex = (newIndex <= minMaxIndex)? newIndex: currentIndex;
+    } else {
+      newIndex= this.gridFirstItemIndex - this.gridSize;
+      newIndex = (newIndex >= minMaxIndex)? newIndex: currentIndex;
+    }
+    this.gridFirstItemIndex$.next(newIndex);
   }
 
+  decrementFirstIndex() {
+    this.gridFirstItemIndex$.next(this.gridFirstItemIndex$.getValue() - this.gridSize);
+  }
 }
