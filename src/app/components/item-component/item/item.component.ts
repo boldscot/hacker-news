@@ -9,6 +9,8 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent {
+  @Input() itemNumber: number = 0;
+
   /**
    * Input setter function, takes an item id as its param and
    * invokes the getItem() function
