@@ -1,6 +1,6 @@
 import { StoryType } from './../../customtypes/story-type';
-import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject, debounceTime, max, Observable, skip } from 'rxjs';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { BehaviorSubject, debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 
 @Component({
@@ -8,7 +8,9 @@ import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-n
   templateUrl: './item-grid.component.html',
   styleUrls: ['./item-grid.component.scss']
 })
-export class ItemGridComponent implements OnInit {
+export class ItemGridComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
+
   @Input() set storyType(type: StoryType) {
     this.stories$ = this.hackerNewsService.getStories(type);
   }
@@ -23,7 +25,8 @@ export class ItemGridComponent implements OnInit {
   ngOnInit(): void {
     this.gridFirstItemIndex$.pipe(
       skip(1),
-      debounceTime(300)
+      debounceTime(300),
+      takeUntil(this.unsubscribe$)
     ).subscribe((index: number) => {
       this.gridFirstItemIndex = index
     });
@@ -45,7 +48,8 @@ export class ItemGridComponent implements OnInit {
     this.gridFirstItemIndex$.next(newIndex);
   }
 
-  decrementFirstIndex() {
-    this.gridFirstItemIndex$.next(this.gridFirstItemIndex$.getValue() - this.gridSize);
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
