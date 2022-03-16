@@ -18,7 +18,7 @@
   </mat-toolbar>
   <mat-grid-list cols="3" rowHeight="5:1" gutterSize="0.5rem">
     <mat-grid-tile
-        *ngFor="let id of (stories | slice:gridFirstItemIndex:gridFirstItemIndex+gridSize)"
+        *ngFor="let id of (stories | slice:gridFirstItemIndex:gridFirstItemIndex+gridSize); index as i"
 
         [style.background]="'#02263df7'"
         [style.color]="'white'"
