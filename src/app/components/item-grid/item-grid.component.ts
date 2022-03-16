@@ -27,9 +27,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
       skip(1),
       debounceTime(300),
       takeUntil(this.unsubscribe$)
-    ).subscribe((index: number) => {
-      this.gridFirstItemIndex = index
-    });
+    ).subscribe((index: number) => this.gridFirstItemIndex = index);
 
     this.stories$ = this.hackerNewsService.getStories('topstories');
   }
