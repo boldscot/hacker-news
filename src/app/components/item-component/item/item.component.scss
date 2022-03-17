@@ -1,11 +1,16 @@
 .container {
-  width: 100%;
+  margin: auto;
+  height: 98%;
+  width: 94%;
   padding: 1.5rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  position: relative;
 
     .title {
-      width: 98%;
       font-size: 1.25rem;
       margin-bottom: 1.5rem;
+      top: 1rem;
     }
 
     .content {
@@ -23,8 +28,9 @@
     }
 
     .item-number {
-      float: right;
-      margin-right: 1rem;
-      padding: 1rem;
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
     }
+
 }

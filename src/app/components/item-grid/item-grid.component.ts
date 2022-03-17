@@ -1,6 +1,6 @@
 import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { BehaviorSubject, debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
+import { debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
     this.stories$ = this.hackerNewsService.getStories(type);
   }
 
-  gridFirstItemIndex$: BehaviorSubject<number> = new BehaviorSubject(0);
+  gridFirstItemIndex$: Subject<number> = new Subject();
   gridFirstItemIndex: number = 0;
   gridSize: number = 27;
   stories$!: Observable<number[] | null>;
@@ -24,7 +24,6 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.gridFirstItemIndex$.pipe(
-      skip(1),
       debounceTime(300),
       takeUntil(this.unsubscribe$)
     ).subscribe((index: number) => this.gridFirstItemIndex = index);
