@@ -9,6 +9,11 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent {
+  /**
+   * Input property of the items number, position in the array of item numbers + 1
+   * @type {number}
+   * @memberof ItemComponent
+   */
   @Input() itemNumber: number = 0;
 
   /**
