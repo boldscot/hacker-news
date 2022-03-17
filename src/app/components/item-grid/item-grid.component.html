@@ -3,13 +3,13 @@
   <mat-toolbar class="toolbar">
     <mat-toolbar-row>
       <div class="button-container">
-        <button [disabled]="gridFirstItemIndex === 0" (click)="updateFirstGridIndex(false, 0)" mat-icon-button aria-label="Example icon button with a menu icon">
+        <button [disabled]="gridFirstItemIndex === 0" (click)="updateFirstGridIndex(false, 0)" mat-icon-button>
           <mat-icon>arrow_back</mat-icon>
           previous
         </button>
       </div>
       <div class="button-container">
-        <button (click)="updateFirstGridIndex(true, stories.length)" mat-icon-button  aria-label="Example icon button with a menu icon">
+        <button [disabled]="gridFirstItemIndex+gridSize >= stories.length" (click)="updateFirstGridIndex(true, stories.length-1)" mat-icon-button>
           more
           <mat-icon>arrow_forward</mat-icon>
         </button>
