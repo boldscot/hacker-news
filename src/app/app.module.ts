@@ -11,6 +11,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
 import { ToolbarComponent } from './components/toolbar/toolbar/toolbar.component';
 import { FrontPageComponent } from './components/front-page/front-page/front-page.component';
 
@@ -30,7 +31,8 @@ import { FrontPageComponent } from './components/front-page/front-page/front-pag
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    PipesModule
+    PipesModule,
+    LayoutModule
   ],
   providers: [
 
