@@ -2,6 +2,7 @@ import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-item-grid',
@@ -9,23 +10,54 @@ import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-n
   styleUrls: ['./item-grid.component.scss']
 })
 export class ItemGridComponent implements OnInit, OnDestroy {
-  private unsubscribe$ = new Subject<void>();
+  private destroyed$ = new Subject<void>();
 
   @Input() set storyType(type: StoryType) {
     this.stories$ = this.hackerNewsService.getStories(type);
   }
+
+  displayNameMap = new Map([
+    [Breakpoints.XSmall, 'XSmall'],
+    [Breakpoints.Small, 'Small'],
+    [Breakpoints.Medium, 'Medium'],
+    [Breakpoints.Large, 'Large'],
+    [Breakpoints.XLarge, 'XLarge'],
+  ]);
 
   gridFirstItemIndex$: Subject<number> = new Subject();
   gridFirstItemIndex: number = 0;
   gridSize: number = 27;
   stories$!: Observable<number[] | null>;
 
-  constructor(private hackerNewsService: HackerNewsService) { }
+  constructor(private hackerNewsService: HackerNewsService,
+    private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+      Breakpoints.Large,
+      Breakpoints.XLarge,
+    ]).pipe(takeUntil(this.destroyed$))
+      .subscribe(result => {
+        console.log(result);
+
+        for (const query of Object.keys(result.breakpoints)) {
+
+
+          if (result.breakpoints[query]) {
+            console.log(query);
+            console.log(this.displayNameMap.get(query) ?? 'Unknown');
+          }
+        }
+      })
+
+
+
     this.gridFirstItemIndex$.pipe(
       debounceTime(300),
-      takeUntil(this.unsubscribe$)
+      takeUntil(this.destroyed$)
     ).subscribe((index: number) => this.gridFirstItemIndex = index);
 
     this.stories$ = this.hackerNewsService.getStories('topstories');
@@ -36,16 +68,16 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
     if (isIncrement) {
       newIndex = this.gridFirstItemIndex + this.gridSize;
-      newIndex = (newIndex <= minMaxIndex)? newIndex: this.gridFirstItemIndex;
+      newIndex = (newIndex <= minMaxIndex) ? newIndex : this.gridFirstItemIndex;
     } else {
-      newIndex= this.gridFirstItemIndex - this.gridSize;
-      newIndex = (newIndex >= minMaxIndex)? newIndex: this.gridFirstItemIndex;
+      newIndex = this.gridFirstItemIndex - this.gridSize;
+      newIndex = (newIndex >= minMaxIndex) ? newIndex : this.gridFirstItemIndex;
     }
     this.gridFirstItemIndex$.next(newIndex);
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 }
