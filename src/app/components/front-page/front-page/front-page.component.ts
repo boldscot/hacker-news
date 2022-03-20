@@ -12,11 +12,9 @@ export class FrontPageComponent {
    * @type {(StoryType)}
    * @memberof FrontPageComponent
    */
-  storyType: StoryType;
+  storyType: StoryType = 'topstories';
 
-  constructor() {
-    this.storyType = 'topstories';
-  }
+  constructor() {}
 
   /**
    * Event handler for the storyType emitter in the toolbar component
