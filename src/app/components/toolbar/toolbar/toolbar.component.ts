@@ -13,7 +13,7 @@ export class ToolbarComponent {
    * @type {(EventEmitter<StoryType>)}
    * @memberof ToolbarComponent
    */
-  @Output() storyTypeSelectEmitter: EventEmitter<StoryType>;
+  @Output() storyTypeSelectEmitter: EventEmitter<StoryType> = new EventEmitter();
 
   /**
    * Array of literal types used in the temnpate to display them in the toolbar
@@ -23,9 +23,7 @@ export class ToolbarComponent {
   storyTypes: StoryType[]
     = ['topstories' , 'newstories' , 'beststories' , 'askstories' , 'showstories' , 'jobstories'];
 
-  constructor() {
-    this.storyTypeSelectEmitter = new EventEmitter();
-  }
+  constructor() {}
 
   /**
    * Event handler for the click event on the toolbar story types
