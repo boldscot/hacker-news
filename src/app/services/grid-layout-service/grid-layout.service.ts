@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { GridLayout } from './../../model/grid-layout';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -16,9 +17,7 @@ export class GridLayoutService {
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
-  observeBreakpoints() {
-    console.log(this.breakPointMappings);
-
+  observeBreakpoints(): Observable<BreakpointState> {
     return this.breakpointObserver.observe(Array.from(this.breakPointMappings.keys()));
   }
 
