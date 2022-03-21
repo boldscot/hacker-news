@@ -2,7 +2,6 @@
   margin: auto;
   height: 98%;
   width: 94%;
-  padding: 1.5rem;
   top: 0.5rem;
   left: 0.5rem;
   position: relative;
@@ -30,7 +29,6 @@
     .item-number {
       position: absolute;
       right: 1rem;
-      bottom: 1rem;
+      bottom: 0;
     }
-
 }
