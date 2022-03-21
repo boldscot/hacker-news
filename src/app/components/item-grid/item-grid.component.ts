@@ -1,3 +1,5 @@
+import { GridLayout } from './../../model/grid-layout';
+import { GridLayoutService } from './../../services/grid-layout-service/grid-layout.service';
 import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
@@ -11,6 +13,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class ItemGridComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
+  gridLayout: GridLayout;
+
 
   @Input() set storyType(type: StoryType) {
     this.stories$ = this.hackerNewsService.getStories(type);
@@ -26,14 +30,16 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
   gridFirstItemIndex$: Subject<number> = new Subject();
   gridFirstItemIndex: number = 0;
-  gridSize: number = 27;
+  //gridSize: number = 27;
   stories$!: Observable<number[] | null>;
 
   constructor(private hackerNewsService: HackerNewsService,
-    private breakpointObserver: BreakpointObserver) { }
+    private gridLayoutService: GridLayoutService) {
+      this.gridLayout = this.gridLayoutService.getGridSettings('XLarge')
+     }
 
   ngOnInit(): void {
-    this.breakpointObserver.observe([
+    this.gridLayoutService.observeBreakpoints([
       Breakpoints.XSmall,
       Breakpoints.Small,
       Breakpoints.Medium,
@@ -48,7 +54,9 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
           if (result.breakpoints[query]) {
             console.log(query);
-            console.log(this.displayNameMap.get(query) ?? 'Unknown');
+            const size: string = this.displayNameMap.get(query) ?? 'Unknown';
+            this.gridLayout = this.gridLayoutService.getGridSettings(size);
+
           }
         }
       })
@@ -67,10 +75,10 @@ export class ItemGridComponent implements OnInit, OnDestroy {
     let newIndex: number = this.gridFirstItemIndex;
 
     if (isIncrement) {
-      newIndex = this.gridFirstItemIndex + this.gridSize;
+      newIndex = this.gridFirstItemIndex + this.gridLayout.gridSize;
       newIndex = (newIndex <= minMaxIndex) ? newIndex : this.gridFirstItemIndex;
     } else {
-      newIndex = this.gridFirstItemIndex - this.gridSize;
+      newIndex = this.gridFirstItemIndex - this.gridLayout.gridSize;
       newIndex = (newIndex >= minMaxIndex) ? newIndex : this.gridFirstItemIndex;
     }
     this.gridFirstItemIndex$.next(newIndex);

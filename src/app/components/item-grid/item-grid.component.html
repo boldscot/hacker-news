@@ -8,16 +8,16 @@
         </button>
       </div>
       <div class="button-container">
-        <button [disabled]="gridFirstItemIndex+gridSize >= stories.length" (click)="updateFirstGridIndex(true, stories.length-1)" mat-icon-button>
+        <button [disabled]="gridFirstItemIndex+gridLayout.gridSize >= stories.length" (click)="updateFirstGridIndex(true, stories.length-1)" mat-icon-button>
           more
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-  <mat-grid-list cols="3" rowHeight="11rem" gutterSize="0.5rem">
+  <mat-grid-list cols="{{gridLayout.columns}}" rowHeight="{{gridLayout.rowHeight}}" gutterSize="{{gridLayout.gutterSize}}">
     <mat-grid-tile
-        *ngFor="let id of (stories | slice:gridFirstItemIndex:gridFirstItemIndex+gridSize); index as i"
+        *ngFor="let id of (stories | slice:gridFirstItemIndex:gridFirstItemIndex+gridLayout.gridSize); index as i"
 
         [style.background]="'#02263df7'"
         [style.color]="'white'"
