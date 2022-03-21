@@ -23,6 +23,7 @@ export class GridLayoutService {
 
   getGridSettings(breakPoint: string): GridLayout {
     const screenSize: string = this.breakPointMappings.get(breakPoint) ?? 'unknown';
+    console.log(screenSize);
 
     switch (screenSize) {
       case 'XLarge': {
@@ -40,6 +41,17 @@ export class GridLayoutService {
           rowHeight: '10rem',
           gutterSize: '0.5rem',
           gridSize: 20
+        }
+      }
+
+      case 'Small' :
+      case 'XSmall' :
+      case 'Medium': {
+        return {
+          columns: '1',
+          rowHeight: '8rem',
+          gutterSize: '0.6rem',
+          gridSize: 13
         }
       }
 
