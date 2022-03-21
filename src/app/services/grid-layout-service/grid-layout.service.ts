@@ -1,16 +1,23 @@
 import { GridLayout } from './../../model/grid-layout';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GridLayoutService {
+  private breakPoints: string[] = [
+    Breakpoints.XSmall,
+    Breakpoints.Small,
+    Breakpoints.Medium,
+    Breakpoints.Large,
+    Breakpoints.XLarge,
+  ];
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
-  observeBreakpoints(value: string | readonly string[]) {
-    return this.breakpointObserver.observe(value);
+  observeBreakpoints() {
+    return this.breakpointObserver.observe(this.breakPoints);
   }
 
   getGridSettings(screenSize: string): GridLayout {

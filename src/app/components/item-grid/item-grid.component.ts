@@ -4,7 +4,7 @@ import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-item-grid',
@@ -39,20 +39,15 @@ export class ItemGridComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit(): void {
-    this.gridLayoutService.observeBreakpoints([
-      Breakpoints.XSmall,
-      Breakpoints.Small,
-      Breakpoints.Medium,
-      Breakpoints.Large,
-      Breakpoints.XLarge,
-    ]).pipe(takeUntil(this.destroyed$))
-      .subscribe(result => {
-        console.log(result);
+    this.gridLayoutService.observeBreakpoints()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((state: BreakpointState) => {
+        console.log(state);
 
-        for (const query of Object.keys(result.breakpoints)) {
+        for (const query of Object.keys(state.breakpoints)) {
 
 
-          if (result.breakpoints[query]) {
+          if (state.breakpoints[query]) {
             console.log(query);
             const size: string = this.displayNameMap.get(query) ?? 'Unknown';
             this.gridLayout = this.gridLayoutService.getGridSettings(size);
