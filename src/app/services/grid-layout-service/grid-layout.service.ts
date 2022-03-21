@@ -45,13 +45,21 @@ export class GridLayoutService {
       }
 
       case 'Small' :
-      case 'XSmall' :
       case 'Medium': {
         return {
           columns: '1',
           rowHeight: '8rem',
           gutterSize: '0.6rem',
           gridSize: 13
+        }
+      }
+
+      case 'XSmall' : {
+        return {
+          columns: '1',
+          rowHeight: '15rem',
+          gutterSize: '0.6rem',
+          gridSize: 10
         }
       }
 
