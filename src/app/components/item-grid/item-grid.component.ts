@@ -20,13 +20,6 @@ export class ItemGridComponent implements OnInit, OnDestroy {
     this.stories$ = this.hackerNewsService.getStories(type);
   }
 
-  displayNameMap = new Map([
-    [Breakpoints.XSmall, 'XSmall'],
-    [Breakpoints.Small, 'Small'],
-    [Breakpoints.Medium, 'Medium'],
-    [Breakpoints.Large, 'Large'],
-    [Breakpoints.XLarge, 'XLarge'],
-  ]);
 
   gridFirstItemIndex$: Subject<number> = new Subject();
   gridFirstItemIndex: number = 0;
@@ -36,7 +29,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
   constructor(private hackerNewsService: HackerNewsService,
     private gridLayoutService: GridLayoutService) {
       this.gridLayout = this.gridLayoutService.getGridSettings('XLarge')
-     }
+  }
 
   ngOnInit(): void {
     this.gridLayoutService.observeBreakpoints()
@@ -49,8 +42,8 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
           if (state.breakpoints[query]) {
             console.log(query);
-            const size: string = this.displayNameMap.get(query) ?? 'Unknown';
-            this.gridLayout = this.gridLayoutService.getGridSettings(size);
+
+            this.gridLayout = this.gridLayoutService.getGridSettings(query);
 
           }
         }

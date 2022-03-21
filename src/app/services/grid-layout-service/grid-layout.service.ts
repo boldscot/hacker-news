@@ -6,21 +6,25 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GridLayoutService {
-  private breakPoints: string[] = [
-    Breakpoints.XSmall,
-    Breakpoints.Small,
-    Breakpoints.Medium,
-    Breakpoints.Large,
-    Breakpoints.XLarge,
-  ];
+  private breakPointMappings: Map<string, string> = new Map([
+    [Breakpoints.XSmall, 'XSmall'],
+    [Breakpoints.Small, 'Small'],
+    [Breakpoints.Medium, 'Medium'],
+    [Breakpoints.Large, 'Large'],
+    [Breakpoints.XLarge, 'XLarge'],
+  ]);
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
   observeBreakpoints() {
-    return this.breakpointObserver.observe(this.breakPoints);
+    console.log(this.breakPointMappings);
+
+    return this.breakpointObserver.observe(Array.from(this.breakPointMappings.keys()));
   }
 
-  getGridSettings(screenSize: string): GridLayout {
+  getGridSettings(breakPoint: string): GridLayout {
+    const screenSize: string = this.breakPointMappings.get(breakPoint) ?? 'unknown';
+
     switch (screenSize) {
       case 'XLarge': {
         return {
@@ -34,11 +38,13 @@ export class GridLayoutService {
       case 'Large': {
         return {
           columns: '2',
-          rowHeight: '11rem',
+          rowHeight: '10rem',
           gutterSize: '0.5rem',
           gridSize: 20
         }
       }
+
+
 
       default:
         return {
