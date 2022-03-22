@@ -23,7 +23,6 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
   gridFirstItemIndex$: Subject<number> = new Subject();
   gridFirstItemIndex: number = 0;
-  //gridSize: number = 27;
   stories$!: Observable<number[] | null>;
 
   constructor(private hackerNewsService: HackerNewsService,
