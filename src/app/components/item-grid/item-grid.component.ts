@@ -2,9 +2,9 @@ import { GridLayout } from './../../model/grid-layout';
 import { GridLayoutService } from './../../services/grid-layout-service/grid-layout.service';
 import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { debounceTime, Observable, skip, Subject, takeUntil } from 'rxjs';
+import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-item-grid',
