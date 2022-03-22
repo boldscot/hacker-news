@@ -26,44 +26,34 @@ export class GridLayoutService {
     console.log(screenSize);
 
     switch (screenSize) {
-      case 'XLarge': {
+      case 'XLarge':
+      case 'Large': {
         return {
           columns: '3',
           rowHeight: '11rem',
-          gutterSize: '0.5rem',
+          gutterSize: '1rem',
           gridSize: 27
         }
       }
 
-      case 'Large': {
+      case 'Medium': {
         return {
           columns: '2',
-          rowHeight: '10rem',
-          gutterSize: '0.5rem',
-          gridSize: 20
+          rowHeight: '11rem',
+          gutterSize: '1rem',
+          gridSize: 18
         }
       }
 
       case 'Small' :
-      case 'Medium': {
-        return {
-          columns: '1',
-          rowHeight: '8rem',
-          gutterSize: '0.6rem',
-          gridSize: 13
-        }
-      }
-
       case 'XSmall' : {
         return {
           columns: '1',
-          rowHeight: '15rem',
-          gutterSize: '0.6rem',
-          gridSize: 10
+          rowHeight: '11rem',
+          gutterSize: '1rem',
+          gridSize: 9
         }
       }
-
-
 
       default:
         return {

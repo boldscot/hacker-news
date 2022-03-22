@@ -11,9 +11,15 @@
     display: flex;
     flex-direction: column;
 
+    .contrib {
+      font-style: italic;
+      text-align: right;
+      font-size: 1.2rem;
+    }
+
     .title {
-      height: 50%;
-      font-size: 1.3rem;
+      margin-top: 1rem;
+      font-size: 1.4rem;
     }
 
     .content {

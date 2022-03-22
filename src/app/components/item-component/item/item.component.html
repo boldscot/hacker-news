@@ -1,6 +1,11 @@
 <div class="container" *ngIf="(item$ | async); let itemVar;">
 
   <div class="wrapper">
+    <div class="contrib">
+      contributed by: {{ itemVar.by? itemVar.by: 'N/A' }} @{{ itemVar.time? (itemVar.time | date: 'short'): 'N/A'}}
+    </div>
+
+
     <div class="title">
       <u>{{ itemVar.title }} ({{ itemVar.url? (itemVar.url | getUrlDomain) : ''}})</u>
     </div>
@@ -9,7 +14,7 @@
       <div class="score">
         <mat-icon> thumb_up </mat-icon>
         <div>
-          {{ itemVar.score }} points by <span href=""> {{ itemVar.by? itemVar.by: 'N/A' }} </span> @{{ itemVar.time? (itemVar.time | date: 'short'): 'N/A'}}
+          {{ itemVar.score }} points
         </div>
       </div>
 

@@ -1,4 +1,33 @@
 .container {
-  width: 70%;
   margin: auto;
+}
+
+@media screen and (min-width: 1920px) {
+  .container {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1919.98px){
+  .container {
+    width: 85%;
+  }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+  .container {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 959.98px) {
+  .container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 599.98px){
+  .container {
+    width: 90%;
+  }
 }
