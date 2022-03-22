@@ -13,7 +13,7 @@
 
     .title {
       height: 50%;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
     }
 
     .content {
@@ -33,6 +33,10 @@
 
         mat-icon {
           cursor: pointer;
+        }
+
+        mat-icon:hover {
+          color: rgb(128, 224, 245);
         }
       }
 
