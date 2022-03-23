@@ -1,6 +1,6 @@
 import { MatIconModule } from '@angular/material/icon';
 import { PipesModule } from './../../../pipes/pipes.module';
-import { MockHackerNewsService } from './../../../testutils/mock-hacker-news-service';
+import { MockHackerNewsService } from './../../../testutils';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';

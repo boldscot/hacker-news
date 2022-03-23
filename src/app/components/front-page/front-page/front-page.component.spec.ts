@@ -1,10 +1,9 @@
 import { StoryType } from './../../../customtypes/story-type';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FrontPageComponent } from './front-page.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-fdescribe('FrontPageComponent', () => {
+describe('FrontPageComponent', () => {
   let component: FrontPageComponent;
   let fixture: ComponentFixture<FrontPageComponent>;
 
