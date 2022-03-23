@@ -22,4 +22,8 @@ export class MockHackerNewsService {
     }
     return of(null);
   };
+
+  getStories(): Observable<number[]> {
+    return of([1,2,3,4,5,6,7,8,9]);
+  }
 }
