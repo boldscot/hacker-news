@@ -39,7 +39,7 @@ export class GridLayoutService {
    * @param breakPoint Breakpoint media query
    * @returns GridLayout
    */
-  getGridSettings(breakPoint: string): GridLayout {
+  getGridLayout(breakPoint: string): GridLayout {
     const screenSize: string = this.breakPointMappings.get(breakPoint) ?? 'unknown';
 
     switch (screenSize) {

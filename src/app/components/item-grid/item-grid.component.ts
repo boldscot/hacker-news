@@ -62,7 +62,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
   constructor(private hackerNewsService: HackerNewsService,
     private gridLayoutService: GridLayoutService) {
     // Initializing the grid using 1920px
-    this.gridLayout = this.gridLayoutService.getGridSettings(Breakpoints.Large);
+    this.gridLayout = this.gridLayoutService.getGridLayout(Breakpoints.Large);
   }
 
   ngOnInit(): void {
@@ -72,7 +72,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
       .subscribe((state: BreakpointState) => {
         for (const query of Object.keys(state.breakpoints)) {
           if (state.breakpoints[query]) {
-            this.gridLayout = this.gridLayoutService.getGridSettings(query);
+            this.gridLayout = this.gridLayoutService.getGridLayout(query);
           }
         }
     });
