@@ -12,7 +12,8 @@ export class MockHackerNewsService {
       url: 'https://www.hackernews.com',
       by: 'Mr Anderson',
       score: 1999,
-      descendants: 30
+      descendants: 30,
+      time: 1648052537 // 1/20/70, 2:47 AM
     }
 
   getItem(id: number): Observable<Item | null> {
