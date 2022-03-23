@@ -13,12 +13,11 @@ import { Breakpoints, BreakpointState } from '@angular/cdk/layout';
 })
 export class ItemGridComponent implements OnInit, OnDestroy {
   /**
-   * Subject used to unseubscribe from the subscriptions to
+   * Subject used to unsubscribe from the subscriptions to
    * gridLayoutService.observeBreakpoints() and gridFirstItemIndex$ observables.
    * @private
    * @memberof ItemGridComponent
    */
-
   private destroyed$: Subject<void> = new Subject();
 
   /**
@@ -62,11 +61,12 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
   constructor(private hackerNewsService: HackerNewsService,
     private gridLayoutService: GridLayoutService) {
-    // Initializing the grid using 1920px max screen
+    // Initializing the grid using 1920px
     this.gridLayout = this.gridLayoutService.getGridSettings(Breakpoints.Large);
   }
 
   ngOnInit(): void {
+    // Subscribing to the Observable<BreakpointState>, updates the gridLayout property
     this.gridLayoutService.observeBreakpoints()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((state: BreakpointState) => {
@@ -75,21 +75,23 @@ export class ItemGridComponent implements OnInit, OnDestroy {
             this.gridLayout = this.gridLayoutService.getGridSettings(query);
           }
         }
-      });
+    });
 
+    // Subscribing to the Observable<boolean>, updates the gridFirstItemIndex property
     this.updateGridFirstItemIndex$.pipe(
       debounceTime(300), // Using debounce time here to prevent repeated button presses making lots of requests
       takeUntil(this.destroyed$)
     ).subscribe((isIncrement: boolean) => {
-        this.gridFirstItemIndex = isIncrement? this.gridFirstItemIndex+this.gridLayout.gridSize
-          :this.gridFirstItemIndex-this.gridLayout.gridSize;
-      });
+      this.gridFirstItemIndex = isIncrement ? this.gridFirstItemIndex + this.gridLayout.gridSize
+        : this.gridFirstItemIndex - this.gridLayout.gridSize;
+    });
   }
 
+
   /**
-   *
-   * @param isIncrement
-   * @param minMaxIndex
+   * Event handler for 'more' or 'previous' button clicks, triggers an
+   * emission from the updateGridFirstItemIndex$ Subject
+   * @param isIncrement Boolean flag that signals an increment or decrement in the grid index
    */
   updateFirstGridIndex(isIncrement: boolean) {
     this.updateGridFirstItemIndex$.next(isIncrement);
