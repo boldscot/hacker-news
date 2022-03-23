@@ -1,7 +1,7 @@
-import { StoryType } from './../../../customtypes/story-type';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FrontPageComponent } from './front-page.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { StoryType } from 'src/app/customtypes/story-type';
 
 describe('FrontPageComponent', () => {
   let component: FrontPageComponent;

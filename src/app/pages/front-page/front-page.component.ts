@@ -1,5 +1,5 @@
-import { StoryType } from './../../../customtypes/story-type';
 import { Component } from '@angular/core';
+import { StoryType } from 'src/app/customtypes/story-type';
 
 @Component({
   selector: 'app-front-page',
