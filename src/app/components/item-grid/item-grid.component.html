@@ -18,7 +18,6 @@
   <mat-grid-list cols="{{gridLayout.columns}}" rowHeight="{{gridLayout.rowHeight}}" gutterSize="{{gridLayout.gutterSize}}">
     <mat-grid-tile
         *ngFor="let id of (stories | slice:gridFirstItemIndex:gridFirstItemIndex+gridLayout.gridSize); index as i"
-
         [style.background]="'#02263df7'"
         [style.color]="'white'"
         [style.border]="'#00090E'">
