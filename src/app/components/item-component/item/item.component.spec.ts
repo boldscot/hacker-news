@@ -9,7 +9,7 @@ import { ItemComponent } from './item.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ItemComponent', () => {
+describe('ItemComponent', () => {
   let component: ItemComponent;
   let fixture: ComponentFixture<ItemComponent>;
   let mockHackerNewsService: MockHackerNewsService = new MockHackerNewsService();
