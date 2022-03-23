@@ -7,6 +7,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GridLayoutService {
+  /**
+   * Breakpoints in px to text mappings, used in the getGridSettings() function
+   * to decide what grid settings to use.
+   * @private
+   * @type {Map<string, string>}
+   * @memberof GridLayoutService
+   */
   private breakPointMappings: Map<string, string> = new Map([
     [Breakpoints.XSmall, 'XSmall'],
     [Breakpoints.Small, 'Small'],
@@ -17,13 +24,23 @@ export class GridLayoutService {
 
   constructor(private breakpointObserver: BreakpointObserver) { }
 
+  /**
+   * Returns an observable of results for the given queries that will emit new results
+   * for any changes in matching of the given queries.
+   * Using the keys from the breakpoint mappings as the media queries
+   * @returns Observable<BreakpointState>
+   */
   observeBreakpoints(): Observable<BreakpointState> {
     return this.breakpointObserver.observe(Array.from(this.breakPointMappings.keys()));
   }
 
+  /**
+   * Takes the given breakpoint and returns the grid settings for that screen size
+   * @param breakPoint Breakpoint media query
+   * @returns GridLayout
+   */
   getGridSettings(breakPoint: string): GridLayout {
     const screenSize: string = this.breakPointMappings.get(breakPoint) ?? 'unknown';
-    console.log(screenSize);
 
     switch (screenSize) {
       case 'XLarge':
@@ -59,7 +76,7 @@ export class GridLayoutService {
         return {
           columns: '3',
           rowHeight: '11rem',
-          gutterSize: '0.5rem',
+          gutterSize: '1rem',
           gridSize: 27
         }
     }
