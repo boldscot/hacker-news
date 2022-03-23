@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { GridLayoutService } from './grid-layout.service';
 
-describe('GridLayoutService', () => {
+fdescribe('GridLayoutService', () => {
   let service: GridLayoutService;
 
   beforeEach(() => {
