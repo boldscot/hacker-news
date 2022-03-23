@@ -12,21 +12,57 @@ import { Breakpoints, BreakpointState } from '@angular/cdk/layout';
   styleUrls: ['./item-grid.component.scss']
 })
 export class ItemGridComponent implements OnInit, OnDestroy {
-  private destroyed$ = new Subject<void>();
+  /**
+   * Subject used to unseubscribe from the subscriptions to
+   * gridLayoutService.observeBreakpoints() and gridFirstItemIndex$ observables.
+   * @private
+   * @memberof ItemGridComponent
+   */
+
+  private destroyed$: Subject<void> = new Subject();
+
+  /**
+   * Object that stores the properties that define the grid layout
+   * @type {GridLayout}
+   * @memberof ItemGridComponent
+   */
   gridLayout: GridLayout;
 
-
+  /**
+   * Input setter for new story types, invokes the hackerNewsService.getStories() function
+   * which returns an Observale<number[] | null>
+   * @memberof ItemGridComponent
+   */
   @Input() set storyType(type: StoryType) {
     this.stories$ = this.hackerNewsService.getStories(type);
   }
 
-
+  /**
+   * Subject that emits the value of the new first grid position, the emission is fired
+   * when the 'more' or 'previous' buttons are clicked in the ui
+   * @type {Subject<number>}
+   * @memberof ItemGridComponent
+   */
   gridFirstItemIndex$: Subject<number> = new Subject();
+
+  /**
+   * Property that stores the new first grid position, used in the template for
+   * slicing the array, disabling a button and setting the grid item number
+   * @type {number}
+   * @memberof ItemGridComponent
+   */
   gridFirstItemIndex: number = 0;
+
+  /**
+   * Observabel on the stories ids, passed to the async pipe in the template
+   * @type {(Observable<number[] | null>)}
+   * @memberof ItemGridComponent
+   */
   stories$!: Observable<number[] | null>;
 
   constructor(private hackerNewsService: HackerNewsService,
     private gridLayoutService: GridLayoutService) {
+    // Initializing the grid using 1920px max screen
     this.gridLayout = this.gridLayoutService.getGridSettings(Breakpoints.Large);
   }
 
@@ -39,18 +75,19 @@ export class ItemGridComponent implements OnInit, OnDestroy {
             this.gridLayout = this.gridLayoutService.getGridSettings(query);
           }
         }
-      })
-
-
+      });
 
     this.gridFirstItemIndex$.pipe(
-      debounceTime(300),
+      debounceTime(300), // Using debounce time here to prevent repeated button presses making lots of requests
       takeUntil(this.destroyed$)
     ).subscribe((index: number) => this.gridFirstItemIndex = index);
-
-    this.stories$ = this.hackerNewsService.getStories('topstories');
   }
 
+  /**
+   *
+   * @param isIncrement
+   * @param minMaxIndex
+   */
   updateFirstGridIndex(isIncrement: boolean, minMaxIndex: number) {
     let newIndex: number = this.gridFirstItemIndex;
 
@@ -64,6 +101,9 @@ export class ItemGridComponent implements OnInit, OnDestroy {
     this.gridFirstItemIndex$.next(newIndex);
   }
 
+  /**
+   * Cleaning up subscriptions
+   */
   ngOnDestroy(): void {
     this.destroyed$.next();
     this.destroyed$.complete();
