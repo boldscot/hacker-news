@@ -2,13 +2,13 @@
   <mat-toolbar class="toolbar">
     <mat-toolbar-row>
       <div class="button-container">
-        <button [disabled]="gridFirstItemIndex === 0" (click)="updateFirstGridIndex(false, 0)" mat-icon-button>
+        <button [disabled]="gridFirstItemIndex-gridLayout.gridSize < 0" (click)="updateFirstGridIndex(false)" mat-icon-button>
           <mat-icon>arrow_back</mat-icon>
           previous
         </button>
       </div>
       <div class="button-container">
-        <button [disabled]="gridFirstItemIndex+gridLayout.gridSize >= stories.length" (click)="updateFirstGridIndex(true, stories.length-1)" mat-icon-button>
+        <button [disabled]="gridFirstItemIndex+gridLayout.gridSize >= stories.length" (click)="updateFirstGridIndex(true)" mat-icon-button>
           more
           <mat-icon>arrow_forward</mat-icon>
         </button>

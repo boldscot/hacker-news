@@ -43,7 +43,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
    * @type {Subject<number>}
    * @memberof ItemGridComponent
    */
-  gridFirstItemIndex$: Subject<number> = new Subject();
+  updateGridFirstItemIndex$: Subject<boolean> = new Subject();
 
   /**
    * Property that stores the new first grid position, used in the template for
@@ -77,10 +77,13 @@ export class ItemGridComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.gridFirstItemIndex$.pipe(
+    this.updateGridFirstItemIndex$.pipe(
       debounceTime(300), // Using debounce time here to prevent repeated button presses making lots of requests
       takeUntil(this.destroyed$)
-    ).subscribe((index: number) => this.gridFirstItemIndex = index);
+    ).subscribe((isIncrement: boolean) => {
+        this.gridFirstItemIndex = isIncrement? this.gridFirstItemIndex+this.gridLayout.gridSize
+          :this.gridFirstItemIndex-this.gridLayout.gridSize;
+      });
   }
 
   /**
@@ -88,17 +91,8 @@ export class ItemGridComponent implements OnInit, OnDestroy {
    * @param isIncrement
    * @param minMaxIndex
    */
-  updateFirstGridIndex(isIncrement: boolean, minMaxIndex: number) {
-    let newIndex: number = this.gridFirstItemIndex;
-
-    if (isIncrement) {
-      newIndex = this.gridFirstItemIndex + this.gridLayout.gridSize;
-      newIndex = (newIndex <= minMaxIndex) ? newIndex : this.gridFirstItemIndex;
-    } else {
-      newIndex = this.gridFirstItemIndex - this.gridLayout.gridSize;
-      newIndex = (newIndex >= minMaxIndex) ? newIndex : this.gridFirstItemIndex;
-    }
-    this.gridFirstItemIndex$.next(newIndex);
+  updateFirstGridIndex(isIncrement: boolean) {
+    this.updateGridFirstItemIndex$.next(isIncrement);
   }
 
   /**
