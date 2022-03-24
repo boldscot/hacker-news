@@ -1,24 +1,16 @@
-import { BreakpointState, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
+import { BreakpointState } from '@angular/cdk/layout';
 import { GridLayoutService } from './../../../services/grid-layout-service/grid-layout.service';
 import { StoryType } from './../../../customtypes/story-type';
-import { Component, EventEmitter, Output, OnInit, OnDestroy, Pipe } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit, OnDestroy {
-  /**
-   * Subject used to unsubscribe from the subscription to the
-   * gridLayoutService.observeBreakpoints() Observable
-   * @private
-   * @type {Subject<void>}
-   * @memberof ToolbarComponent
-   */
-  private destroyed$: Subject<void> = new Subject();
-
+export class ToolbarComponent implements OnInit {
   /**
    * The Event Emitter passes the emiited value to its parent
    * The Emitter emits a value when a story is selected from the toolbar
@@ -42,16 +34,22 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    */
   isSmallerScreen: boolean = false;
 
+  breakPoint$!: Observable<string | undefined>;
+
   constructor(private gridLayoutService: GridLayoutService) {}
 
   ngOnInit(): void {
-    // Subscribing to the Observable<BreakpointState>, setting the isSmallerScreen property
-    this.gridLayoutService.observeBreakpoints()
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((state: BreakpointState) => {
-        this.isSmallerScreen = (state.breakpoints[Breakpoints.XSmall] || state.breakpoints[Breakpoints.Small] ||
-          state.breakpoints[Breakpoints.Medium])? true: false;
-      });
+    this.breakPoint$ = this.gridLayoutService.observeBreakpoints()
+      .pipe(
+        map((state: BreakpointState) => {
+          for (const query of Object.keys(state.breakpoints)) {
+            if (state.breakpoints[query]) {
+              return this.gridLayoutService.getbreakpointMapping(query);
+            }
+          }
+          return undefined;
+        })
+      )
   }
 
   /**
@@ -60,13 +58,5 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    */
   onStoryClickHandler(storyType: StoryType) {
     this.storyTypeSelectEmitter.emit(storyType);
-  }
-
-  /**
-   * Clean up the subscription
-   */
-  ngOnDestroy(): void {
-    this.destroyed$.next();
-    this.destroyed$.complete();
   }
 }

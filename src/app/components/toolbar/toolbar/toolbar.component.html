@@ -2,7 +2,8 @@
   <mat-toolbar-row>
     <div class="site-name"> Hacker News </div>
 
-    <button class="menu-bttn" *ngIf="isSmallerScreen" mat-button [matMenuTriggerFor]="storiesMenu">
+    <button class="menu-bttn" *ngIf="(breakPoint$ | async) === 'XSmall' || (breakPoint$ | async) === 'Small'
+      || (breakPoint$ | async) === 'Medium'" mat-button [matMenuTriggerFor]="storiesMenu">
       <mat-icon>
         menu
       </mat-icon>
@@ -15,7 +16,8 @@
     </mat-menu>
 
 
-    <div *ngIf="!isSmallerScreen" class="stories">
+    <div *ngIf="(breakPoint$ | async) !== 'XSmall' && (breakPoint$ | async) !== 'Small'
+      && (breakPoint$ | async) !== 'Medium'" class="stories">
       <div class="story" *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
         {{ type }}
       </div>

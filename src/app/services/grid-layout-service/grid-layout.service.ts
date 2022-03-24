@@ -81,4 +81,8 @@ export class GridLayoutService {
         }
     }
   }
+
+  getbreakpointMapping(breakPoint: string): string | undefined {
+    return this.breakPointMappings.get(breakPoint);
+  }
 }
