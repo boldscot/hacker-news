@@ -7,7 +7,7 @@ import { ToolbarComponent } from './toolbar.component';
 import { DebugElement } from '@angular/core';
 import { of } from 'rxjs';
 
-fdescribe('ToolbarComponent', () => {
+describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
 
