@@ -7,7 +7,9 @@
 
 
     <div class="title">
-      <a href={{itemVar.url}} target="_blank"> {{ itemVar.title }}</a> ({{ itemVar.url? (itemVar.url | getUrlDomain) : ''}})
+      <a *ngIf="itemVar.url" href={{itemVar.url}} target="_blank"> {{itemVar.title}}</a>
+      <a *ngIf="!itemVar.url"> {{itemVar.title}}</a>
+      <span class="domain">({{ itemVar.url? (itemVar.url | getUrlDomain) : ''}})</span>
     </div>
 
     <div class="content">
