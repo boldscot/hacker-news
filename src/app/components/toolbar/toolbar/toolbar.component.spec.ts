@@ -1,20 +1,21 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './../../../modules/angular-material/angular-material.module';
 import { StoryType } from './../../../customtypes/story-type';
 import { By } from '@angular/platform-browser';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ToolbarComponent } from './toolbar.component';
 import { DebugElement } from '@angular/core';
+import { of } from 'rxjs';
 
-describe('ToolbarComponent', () => {
+fdescribe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        AngularMaterialModule
+        AngularMaterialModule,
+        BrowserAnimationsModule
       ],
       declarations: [ ToolbarComponent ],
     })
@@ -29,7 +30,7 @@ describe('ToolbarComponent', () => {
   });
 
   it('should render the storyTypes array', () => {
-    component.isSmallerScreen = false;
+    component.breakPoint$ = of('Large');
     fixture.detectChanges();
     const debugEls: DebugElement[] = fixture.debugElement.queryAll(By.css('.story'));
     expect(debugEls.length).toBe(component.storyTypes.length);
@@ -48,12 +49,27 @@ describe('ToolbarComponent', () => {
   });
 
   it('should invoke onStoryClickHandler() when a story type is click in the toolbar', () => {
-    component.isSmallerScreen = false;
+    component.breakPoint$ = of('Large');
     fixture.detectChanges();
-    let wasInvoked: boolean = false;
-    spyOn(component, 'onStoryClickHandler').and.callFake(() => wasInvoked = true);
+    spyOn(component, 'onStoryClickHandler');
     const de: DebugElement = fixture.debugElement.queryAll(By.css('.story'))[0];
     de.triggerEventHandler('click', null);
-    expect(wasInvoked).toBeTrue();
+    expect(component.onStoryClickHandler).toHaveBeenCalled();
+  });
+
+  it('should invoke onStoryClickHandler() when a story type is click in the toolbar menu', () => {
+    // Using Medium size to get the menu into the DOM
+    component.breakPoint$ = of('Medium');
+    fixture.detectChanges();
+    let wasInvoked: boolean = false;
+    spyOn(component, 'onStoryClickHandler');
+    const de: DebugElement = fixture.debugElement.query(By.css('.menu-bttn'));
+    de.triggerEventHandler('click', null);
+    const deArray: DebugElement[] = fixture.debugElement.queryAll(By.css('.menu-item'));
+    console.log(deArray);
+    deArray[0].triggerEventHandler('click', null);
+    expect(component.onStoryClickHandler).toHaveBeenCalled();
+    deArray[deArray.length-1].triggerEventHandler('click', null);
+    expect(component.onStoryClickHandler).toHaveBeenCalled();
   });
 });
