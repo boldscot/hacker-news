@@ -1,3 +1,4 @@
+import { AngularMaterialModule } from './../../../modules/angular-material/angular-material.module';
 import { StoryType } from './../../../customtypes/story-type';
 import { By } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,7 +14,7 @@ describe('ToolbarComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatToolbarModule
+        AngularMaterialModule
       ],
       declarations: [ ToolbarComponent ],
     })
@@ -28,6 +29,8 @@ describe('ToolbarComponent', () => {
   });
 
   it('should render the storyTypes array', () => {
+    component.isSmallerScreen = false;
+    fixture.detectChanges();
     const debugEls: DebugElement[] = fixture.debugElement.queryAll(By.css('.story'));
     expect(debugEls.length).toBe(component.storyTypes.length);
     let el: HTMLElement = debugEls[0].nativeElement;
@@ -45,6 +48,8 @@ describe('ToolbarComponent', () => {
   });
 
   it('should invoke onStoryClickHandler() when a story type is click in the toolbar', () => {
+    component.isSmallerScreen = false;
+    fixture.detectChanges();
     let wasInvoked: boolean = false;
     spyOn(component, 'onStoryClickHandler').and.callFake(() => wasInvoked = true);
     const de: DebugElement = fixture.debugElement.queryAll(By.css('.story'))[0];
