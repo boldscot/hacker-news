@@ -3,7 +3,7 @@ import { BreakpointState } from '@angular/cdk/layout';
 import { GridLayoutService } from './../../../services/grid-layout-service/grid-layout.service';
 import { StoryType } from './../../../customtypes/story-type';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -28,13 +28,11 @@ export class ToolbarComponent implements OnInit {
     = ['topstories', 'newstories', 'beststories', 'askstories', 'showstories', 'jobstories'];
 
   /**
-   * Boolean flag that hides/unhides the toolbar stories and menu for smaller screen
-   * @type {boolean}
+   * Observable on literal string breakPoint, passed to the async pipe in the template
+   * @type {(Observable<string | undefined>)}
    * @memberof ToolbarComponent
    */
-  isSmallerScreen: boolean = false;
-
-  breakPoint$!: Observable<string | undefined>;
+  breakPoint$: Observable<string | undefined> = of('Large');
 
   constructor(private gridLayoutService: GridLayoutService) {}
 
