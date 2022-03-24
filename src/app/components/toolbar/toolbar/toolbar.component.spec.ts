@@ -66,7 +66,6 @@ describe('ToolbarComponent', () => {
     const de: DebugElement = fixture.debugElement.query(By.css('.menu-bttn'));
     de.triggerEventHandler('click', null);
     const deArray: DebugElement[] = fixture.debugElement.queryAll(By.css('.menu-item'));
-    console.log(deArray);
     deArray[0].triggerEventHandler('click', null);
     expect(component.onStoryClickHandler).toHaveBeenCalled();
     deArray[deArray.length-1].triggerEventHandler('click', null);

@@ -12,7 +12,7 @@ export class MockGridLayoutService {
     });
   }
 
-  getGridLayout(point: string): GridLayout {
+  getGridLayout(): GridLayout {
     return {
       columns: '3',
       rowHeight: '11rem',

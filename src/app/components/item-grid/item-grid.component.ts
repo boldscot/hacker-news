@@ -62,7 +62,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
   constructor(private hackerNewsService: HackerNewsService,
     private gridLayoutService: GridLayoutService) {
-    // Initializing the grid using 1920px
+    // Initializing the grid using '(min-width: 1280px) and (max-width: 1919.98px)'
     this.gridLayout = this.gridLayoutService.getGridLayout(Breakpoints.Large);
   }
 
