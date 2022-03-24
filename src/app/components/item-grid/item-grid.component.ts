@@ -29,11 +29,12 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
   /**
    * Input setter for new story types, invokes the hackerNewsService.getStories() function
-   * which returns an Observale<number[] | null>
+   * which returns an Observale<number[] | null> and sets the first grid index to zero
    * @memberof ItemGridComponent
    */
   @Input() set storyType(type: StoryType) {
     this.stories$ = this.hackerNewsService.getStories(type);
+    this.gridFirstItemIndex = 0;
   }
 
   /**
