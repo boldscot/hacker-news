@@ -7,7 +7,7 @@
 
 
     <div class="title">
-      <u>{{ itemVar.title }} ({{ itemVar.url? (itemVar.url | getUrlDomain) : ''}})</u>
+      <a href={{itemVar.url}} target="_blank"> {{ itemVar.title }}</a> ({{ itemVar.url? (itemVar.url | getUrlDomain) : ''}})
     </div>
 
     <div class="content">
