@@ -1,9 +1,9 @@
-<mat-toolbar class="toolbar">
+<mat-toolbar class="toolbar" *ngIf="(breakPoint$ | async) as breakPoint">
   <mat-toolbar-row>
     <div class="site-name"> Hacker News </div>
 
-    <button class="menu-bttn" *ngIf="(breakPoint$ | async) === 'XSmall' || (breakPoint$ | async) === 'Small'
-      || (breakPoint$ | async) === 'Medium'" mat-button [matMenuTriggerFor]="storiesMenu">
+    <button class="menu-bttn" *ngIf="breakPoint === 'XSmall' || breakPoint === 'Small'
+      || breakPoint === 'Medium'" mat-button [matMenuTriggerFor]="storiesMenu">
       <mat-icon>
         menu
       </mat-icon>
@@ -15,9 +15,8 @@
       </button>
     </mat-menu>
 
-
-    <div *ngIf="(breakPoint$ | async) !== 'XSmall' && (breakPoint$ | async) !== 'Small'
-      && (breakPoint$ | async) !== 'Medium'" class="stories">
+    <div *ngIf="breakPoint !== 'XSmall' && breakPoint !== 'Small'
+      && breakPoint !== 'Medium'" class="stories">
       <div class="story" *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
         {{ type }}
       </div>
