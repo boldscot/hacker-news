@@ -2,20 +2,20 @@
   <mat-toolbar-row>
     <div class="site-name"> Hacker News </div>
 
-    <button mat-button [matMenuTriggerFor]="storiesMenu">
+    <button class="menu-bttn" *ngIf="isSmallerScreen" mat-button [matMenuTriggerFor]="storiesMenu">
       <mat-icon>
         menu
       </mat-icon>
       stories
     </button>
-    <mat-menu #storiesMenu="matMenu">
-      <button mat-menu-item *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
+    <mat-menu class="menu" #storiesMenu="matMenu">
+      <button class="menu-item" mat-menu-item *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
         {{ type }}
       </button>
     </mat-menu>
 
 
-    <div class="stories">
+    <div *ngIf="!isSmallerScreen" class="stories">
       <div class="story" *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
         {{ type }}
       </div>

@@ -4,6 +4,16 @@
   margin-bottom: 1rem;
   background-color: rgb(2, 11, 18) !important;
 
+  .menu-bttn {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background-color: rgb(2, 11, 18);
+  }
+
+  .menu-bttn:hover {
+    color: rgb(128, 224, 245);
+  }
+
   .site-name {
     font-size: 3rem;
   }
