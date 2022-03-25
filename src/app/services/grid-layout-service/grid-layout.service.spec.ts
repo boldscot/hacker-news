@@ -21,13 +21,10 @@ describe('GridLayoutService', () => {
   });
 
   it('#observeBreakpoints() should return Observable<BreakpointState>', () => {
-    service.observeBreakpoints().subscribe((state: BreakpointState) => {
-      expect(state).not.toBeNull();
-      expect(state.breakpoints[Breakpoints.XSmall]).not.toBeUndefined();
-      expect(state.breakpoints[Breakpoints.Small]).not.toBeUndefined();
-      expect(state.breakpoints[Breakpoints.Medium]).not.toBeUndefined();
-      expect(state.breakpoints[Breakpoints.Large]).not.toBeUndefined();
-      expect(state.breakpoints[Breakpoints.XLarge]).not.toBeUndefined();
+    service.observeBreakpoints().subscribe((breakPoint: string | undefined) => {
+      console.log(breakPoint);
+
+      expect(breakPoint).not.toBeNull();
     });
   });
 

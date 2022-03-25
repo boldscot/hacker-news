@@ -1,13 +1,14 @@
-import { GridLayoutService } from './../../../services/grid-layout-service/grid-layout.service';
-import { MockGridLayoutService } from './../../../testutils/mock-grid-layout-service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './../../../modules/angular-material/angular-material.module';
-import { StoryType } from './../../../customtypes/story-type';
+
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToolbarComponent } from './toolbar.component';
 import { DebugElement } from '@angular/core';
 import { of } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoryType } from 'src/app/customtypes/story-type';
+import { AngularMaterialModule } from 'src/app/modules/angular-material/angular-material.module';
+import { GridLayoutService } from 'src/app/services/grid-layout-service/grid-layout.service';
+import { MockGridLayoutService } from 'src/app/testutils/mock-grid-layout-service';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;

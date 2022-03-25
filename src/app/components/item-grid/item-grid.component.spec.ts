@@ -1,4 +1,3 @@
-import { AppComponent } from './../../app.component';
 import { MockGridLayoutService } from './../../testutils/mock-grid-layout-service';
 import { GridLayoutService } from './../../services/grid-layout-service/grid-layout.service';
 import { ComponentsModule } from './../components.module';
