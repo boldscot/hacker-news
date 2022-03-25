@@ -70,12 +70,8 @@ export class ItemGridComponent implements OnInit, OnDestroy {
     // Subscribing to the Observable<BreakpointState>, updates the gridLayout property
     this.gridLayoutService.observeBreakpoints()
       .pipe(takeUntil(this.destroyed$))
-      .subscribe((state: BreakpointState) => {
-        for (const query of Object.keys(state.breakpoints)) {
-          if (state.breakpoints[query]) {
-            this.gridLayout = this.gridLayoutService.getGridLayout(query);
-          }
-        }
+      .subscribe((breakPoint: string | undefined) => {
+        if (breakPoint) this.gridLayout = this.gridLayoutService.getGridLayout(breakPoint);
     });
 
     // Subscribing to the Observable<boolean>, updates the gridFirstItemIndex property

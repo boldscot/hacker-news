@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { GridLayout } from './../../model/grid-layout';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
@@ -25,18 +26,26 @@ export class GridLayoutService {
   constructor(private breakpointObserver: BreakpointObserver) { }
 
   /**
-   * Returns an observable of results for the given queries that will emit new results
-   * for any changes in matching of the given queries.
-   * Using the keys from the breakpoint mappings as the media queries
-   * @returns Observable<BreakpointState>
+   * Returns an observable on a the literal string breakpoint or undefined
+   * @returns Observable<string |undefined>
    */
-  observeBreakpoints(): Observable<BreakpointState> {
-    return this.breakpointObserver.observe(Array.from(this.breakPointMappings.keys()));
+  observeBreakpoints(): Observable<string | undefined> {
+    return this.breakpointObserver.observe(Array.from(this.breakPointMappings.keys()))
+      .pipe(
+        map((state: BreakpointState) => {
+          for (const query of Object.keys(state.breakpoints)) {
+            if (state.breakpoints[query]) {
+              return this.breakPointMappings.get(query);
+            }
+          }
+          return undefined;
+        })
+      );
   }
 
   /**
    * Takes the given breakpoint and returns the grid settings for that screen size
-   * @param breakPoint Breakpoint media query
+   * @param breakPoint Breakpoint literal string
    * @returns GridLayout
    */
   getGridLayout(breakPoint: string): GridLayout {
@@ -62,8 +71,8 @@ export class GridLayoutService {
         }
       }
 
-      case 'Small' :
-      case 'XSmall' : {
+      case 'Small':
+      case 'XSmall': {
         return {
           columns: '1',
           rowHeight: '11rem',
