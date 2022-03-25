@@ -1,3 +1,5 @@
+import { GridLayoutService } from './../../../services/grid-layout-service/grid-layout.service';
+import { MockGridLayoutService } from './../../../testutils/mock-grid-layout-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './../../../modules/angular-material/angular-material.module';
 import { StoryType } from './../../../customtypes/story-type';
@@ -10,12 +12,16 @@ import { of } from 'rxjs';
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
+  let mockGridLayoutService: MockGridLayoutService = new MockGridLayoutService();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         AngularMaterialModule,
         BrowserAnimationsModule
+      ],
+      providers: [
+        { provide: GridLayoutService, useValue: mockGridLayoutService }
       ],
       declarations: [ ToolbarComponent ],
     })
@@ -61,7 +67,6 @@ describe('ToolbarComponent', () => {
     // Using Medium size to get the menu into the DOM
     component.breakPoint$ = of('Medium');
     fixture.detectChanges();
-    let wasInvoked: boolean = false;
     spyOn(component, 'onStoryClickHandler');
     const de: DebugElement = fixture.debugElement.query(By.css('.menu-bttn'));
     de.triggerEventHandler('click', null);
