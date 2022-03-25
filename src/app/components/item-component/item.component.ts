@@ -1,7 +1,7 @@
-import { HackerNewsService } from './../../../services/hacker-news-service/hacker-news.service';
 import { Component, Input } from '@angular/core';
 import { Item } from 'src/app/model/item';
 import { Observable, of } from 'rxjs';
+import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 
 @Component({
   selector: 'app-item',

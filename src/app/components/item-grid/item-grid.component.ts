@@ -4,7 +4,7 @@ import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
-import { Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-item-grid',

@@ -1,9 +1,8 @@
-import { map } from 'rxjs/operators';
-import { BreakpointState } from '@angular/cdk/layout';
-import { GridLayoutService } from './../../../services/grid-layout-service/grid-layout.service';
-import { StoryType } from './../../../customtypes/story-type';
+
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { StoryType } from 'src/app/customtypes/story-type';
+import { GridLayoutService } from 'src/app/services/grid-layout-service/grid-layout.service';
 
 @Component({
   selector: 'app-toolbar',
