@@ -1,4 +1,4 @@
-<div class="container" *ngIf="stories$ | async as stories">
+<div class="container" *ngIf="(stories$ | async) as stories">
   <mat-toolbar class="toolbar">
     <mat-toolbar-row>
       <div class="button-container">
