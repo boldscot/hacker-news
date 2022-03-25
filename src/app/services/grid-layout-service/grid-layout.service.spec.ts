@@ -32,13 +32,18 @@ describe('GridLayoutService', () => {
   });
 
   it('#getGridSettings() should return GridLayout', () => {
-    let gridLayout: GridLayout = service.getGridLayout(Breakpoints.Large);
+    let gridLayout: GridLayout = service.getGridLayout(Breakpoints.XLarge);
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('3');
     expect(gridLayout.gridSize).toBe(27);
+    expect(gridLayout.gutterSize).toEqual('1rem');
+    expect(gridLayout.rowHeight).toEqual('11rem');
 
-    gridLayout = service.getGridLayout(Breakpoints.XSmall);
+
+    gridLayout = service.getGridLayout(Breakpoints.Large);
     expect(gridLayout).not.toBeNull();
+    expect(gridLayout.columns).toEqual('3');
+    expect(gridLayout.gridSize).toBe(27);
     expect(gridLayout.gutterSize).toEqual('1rem');
     expect(gridLayout.rowHeight).toEqual('11rem');
 
@@ -48,5 +53,27 @@ describe('GridLayoutService', () => {
     expect(gridLayout.gutterSize).toEqual('1rem');
     expect(gridLayout.rowHeight).toEqual('11rem');
     expect(gridLayout.gridSize).toBe(18);
+
+    gridLayout = service.getGridLayout(Breakpoints.Small);
+    expect(gridLayout).not.toBeNull();
+    expect(gridLayout.columns).toEqual('1');
+    expect(gridLayout.gridSize).toBe(9);
+    expect(gridLayout.gutterSize).toEqual('1rem');
+    expect(gridLayout.rowHeight).toEqual('11rem');
+
+    gridLayout = service.getGridLayout(Breakpoints.XSmall);
+    expect(gridLayout).not.toBeNull();
+    expect(gridLayout.columns).toEqual('1');
+    expect(gridLayout.gridSize).toBe(9);
+    expect(gridLayout.gutterSize).toEqual('1rem');
+    expect(gridLayout.rowHeight).toEqual('11rem');
+
+    // Covering the unknown branch, it should use the default swicth branch
+    gridLayout = service.getGridLayout('');
+    expect(gridLayout).not.toBeNull();
+    expect(gridLayout.columns).toEqual('3');
+    expect(gridLayout.gridSize).toBe(27);
+    expect(gridLayout.gutterSize).toEqual('1rem');
+    expect(gridLayout.rowHeight).toEqual('11rem');
   });
 });
