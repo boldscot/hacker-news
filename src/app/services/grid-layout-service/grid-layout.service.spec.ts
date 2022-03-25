@@ -1,4 +1,3 @@
-import { MockGridLayoutService } from 'src/app/testutils/mock-grid-layout-service';
 import { GridLayout } from './../../model/grid-layout';
 import { Breakpoints } from '@angular/cdk/layout';
 import { TestBed } from '@angular/core/testing';
@@ -35,6 +34,10 @@ describe('GridLayoutService', () => {
       expect(breakPoint).not.toBeNull();
       expect(breakPoint).toEqual('Large');
     });
+  });
+
+  it('#getbreakpointMapping() should return Large', () => {
+    expect(service.getbreakpointMapping('sdsd')).toEqual('Large');
   });
 
   it('#getGridSettings() should return GridLayout', () => {
