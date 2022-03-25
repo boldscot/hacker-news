@@ -54,7 +54,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
   gridFirstItemIndex: number = 0;
 
   /**
-   * Observabel on the stories ids, passed to the async pipe in the template
+   * Observable on the stories ids, passed to the async pipe in the template
    * @type {(Observable<number[] | null>)}
    * @memberof ItemGridComponent
    */
