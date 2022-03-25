@@ -1,10 +1,9 @@
-import { MockGridLayoutService } from './../../testutils/mock-grid-layout-service';
 import { GridLayoutService } from './../../services/grid-layout-service/grid-layout.service';
 import { ComponentsModule } from './../components.module';
 import { AngularMaterialModule } from './../../modules/angular-material/angular-material.module';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
-import { MockHackerNewsService } from 'src/app/testutils';
+import { MockGridLayoutService, MockHackerNewsService } from 'src/app/testutils';
 import { ItemGridComponent } from './item-grid.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';

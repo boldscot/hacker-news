@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoryType } from 'src/app/customtypes/story-type';
 import { AngularMaterialModule } from 'src/app/modules/angular-material/angular-material.module';
 import { GridLayoutService } from 'src/app/services/grid-layout-service/grid-layout.service';
-import { MockGridLayoutService } from 'src/app/testutils/mock-grid-layout-service';
+import { MockGridLayoutService } from 'src/app/testutils';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
