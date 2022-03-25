@@ -26,19 +26,19 @@ export class GridLayoutService {
   constructor(private breakpointObserver: BreakpointObserver) { }
 
   /**
-   * Returns an observable on a the literal string breakpoint or undefined
-   * @returns Observable<string |undefined>
+   * Returns an observable on a the literal string breakpoint
+   * @returns Observable<string>
    */
-  observeBreakpoints(): Observable<string | undefined> {
-    return this.breakpointObserver.observe(Array.from(this.breakPointMappings.keys()))
+  observeBreakpoints(value: string | readonly string[]): Observable<string> {
+    return this.breakpointObserver.observe(value)
       .pipe(
         map((state: BreakpointState) => {
           for (const query of Object.keys(state.breakpoints)) {
             if (state.breakpoints[query]) {
-              return this.breakPointMappings.get(query);
+              return this.getbreakpointMapping(query);
             }
           }
-          return undefined;
+          return this.getbreakpointMapping(Breakpoints.Large);
         })
       );
   }
@@ -91,7 +91,12 @@ export class GridLayoutService {
     }
   }
 
-  getbreakpointMapping(breakPoint: string): string | undefined {
-    return this.breakPointMappings.get(breakPoint);
+  getbreakpointMapping(breakPoint: string): string {
+    const bp: string | undefined = this.breakPointMappings.get(breakPoint);
+    return bp? bp: 'Large';
+  }
+
+  getBreakPoints(): string[] {
+    return Array.from(this.breakPointMappings.keys());
   }
 }

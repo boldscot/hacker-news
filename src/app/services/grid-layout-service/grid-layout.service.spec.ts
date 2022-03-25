@@ -1,5 +1,5 @@
 import { GridLayout } from './../../model/grid-layout';
-import { BreakpointState, Breakpoints } from '@angular/cdk/layout';
+import { Breakpoints } from '@angular/cdk/layout';
 import { TestBed } from '@angular/core/testing';
 
 import { GridLayoutService } from './grid-layout.service';
@@ -21,7 +21,7 @@ describe('GridLayoutService', () => {
   });
 
   it('#observeBreakpoints() should return Observable<BreakpointState>', () => {
-    service.observeBreakpoints().subscribe((breakPoint: string | undefined) => {
+    service.observeBreakpoints(service.getBreakPoints()).subscribe((breakPoint: string | undefined) => {
       console.log(breakPoint);
 
       expect(breakPoint).not.toBeNull();

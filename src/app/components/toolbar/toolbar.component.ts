@@ -36,7 +36,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private gridLayoutService: GridLayoutService) { }
 
   ngOnInit(): void {
-    this.breakPoint$ = this.gridLayoutService.observeBreakpoints();
+    this.breakPoint$ = this.gridLayoutService.observeBreakpoints(this.gridLayoutService.getBreakPoints());
   }
 
   /**

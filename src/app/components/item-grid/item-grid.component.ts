@@ -68,7 +68,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Subscribing to the Observable<string | undefined>, updates the gridLayout property
-    this.gridLayoutService.observeBreakpoints()
+    this.gridLayoutService.observeBreakpoints(this.gridLayoutService.getBreakPoints())
       .pipe(takeUntil(this.destroyed$))
       .subscribe((breakPoint: string | undefined) => {
         if (breakPoint) this.gridLayout = this.gridLayoutService.getGridLayout(breakPoint);
