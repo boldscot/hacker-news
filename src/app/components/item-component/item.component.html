@@ -2,7 +2,7 @@
 
   <div class="wrapper">
     <div class="contrib">
-      contributed by: {{ itemVar.by? itemVar.by: 'N/A' }} @{{ itemVar.time? (itemVar.time | date: 'short'): 'N/A'}}
+      contributed by: {{ itemVar.by? itemVar.by: 'N/A' }} @{{ itemVar.time? (itemVar.time | timeAgo): 'N/A'}}
     </div>
 
 
