@@ -16,7 +16,7 @@ export class MockGridLayoutService {
     }
   }
 
-  getBreakPoints(): string[] {
+  getBreakPoints(): readonly string[] {
     return [Breakpoints.Large];
   }
 }
