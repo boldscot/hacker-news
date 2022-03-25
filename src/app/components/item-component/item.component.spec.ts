@@ -1,13 +1,12 @@
 import { MatIconModule } from '@angular/material/icon';
-import { PipesModule } from './../../../pipes/pipes.module';
-import { MockHackerNewsService } from './../../../testutils';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ItemComponent } from './item.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { MockHackerNewsService } from 'src/app/testutils';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 describe('ItemComponent', () => {
   let component: ItemComponent;
