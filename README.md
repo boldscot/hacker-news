@@ -1,27 +1,24 @@
 # HackerNews
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+Node v16.14.0
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Design choices
+## Firebase
+Due to unfamiliarity with Firebase, with the main concern of somebody being able to run a Firebase app that belongs to me. I decided to stck with the hacker news REST api.
+## Angular
+I choose to use Angular as I have more experience with it over REACT.
+I left routing out of the App as I knew I was only implementing a front page, routing would need to be added to extend the application.
+I used Angualr material modules as I have some past experience with them.
 
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+# Test Coverage
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `ng test --code-coverage` to generate code coverage documentation, the coverage folder can be found at the root level of the project directory, e.g /hacker-news/coverage.
 
-## Further help
+## Development server
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. You may need to run npm install if there are issues with with dependencies stopping the app running.
