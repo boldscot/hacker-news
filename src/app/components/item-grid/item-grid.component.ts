@@ -1,4 +1,4 @@
-import { GridLayout } from './../../model/grid-layout';
+import { GridLayout } from './../../model';
 import { GridLayoutService } from './../../services/grid-layout-service/grid-layout.service';
 import { StoryType } from './../../customtypes/story-type';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';

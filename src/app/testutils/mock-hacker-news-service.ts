@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { Item } from '../model/item';
+import { Item } from '../model';
 
 /**
  * Mock service class for testing purposes

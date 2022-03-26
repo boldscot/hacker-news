@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { GridLayout } from './../../model/grid-layout';
+import { GridLayout } from './../../model';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 

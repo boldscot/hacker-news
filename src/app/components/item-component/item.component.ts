@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Item } from 'src/app/model/item';
 import { Observable, of } from 'rxjs';
+import { Item } from 'src/app/model';
 import { HackerNewsService } from 'src/app/services/hacker-news-service/hacker-news.service';
 
 @Component({

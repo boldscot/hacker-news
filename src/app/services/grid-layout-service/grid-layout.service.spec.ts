@@ -1,7 +1,5 @@
-import { GridLayout } from './../../model/grid-layout';
-import { Breakpoints } from '@angular/cdk/layout';
+import { GridLayout } from './../../model';
 import { TestBed } from '@angular/core/testing';
-
 import { GridLayoutService } from './grid-layout.service';
 
 describe('GridLayoutService', () => {

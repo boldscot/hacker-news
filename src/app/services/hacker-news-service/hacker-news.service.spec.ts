@@ -2,7 +2,7 @@ import { environment } from './../../../environments/environment';
 import { TestBed } from '@angular/core/testing';
 import { HackerNewsService } from './hacker-news.service';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { Item } from 'src/app/model/item';
+import { Item } from 'src/app/model';
 
 describe('HackerNewsService', () => {
   let service: HackerNewsService;
