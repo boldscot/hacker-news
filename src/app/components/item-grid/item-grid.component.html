@@ -8,6 +8,12 @@
         </button>
       </div>
       <div class="button-container">
+        <button class="more" mat-icon-button>
+          {{ currentStoryType }}
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+      <div class="button-container">
         <button class="more" [disabled]="gridFirstItemIndex+gridLayout.gridSize >= stories.length" (click)="updateFirstGridIndex(true)" mat-icon-button>
           more
           <mat-icon>arrow_forward</mat-icon>

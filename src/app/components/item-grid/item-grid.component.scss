@@ -10,12 +10,13 @@
   .toolbar {
     width: 100%;
     margin-bottom: 0.5rem;
-    min-height: 3.5rem;
-    height: 3.5rem;
+    min-height: 4rem;
+    height: 4rem;
     background-color: rgb(2, 11, 18) !important;
 
     .button-container {
-      width: 50%;
+      width: 30%;
+      margin: auto;
       text-align: center;
 
       button {
