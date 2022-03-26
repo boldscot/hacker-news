@@ -19,6 +19,13 @@ export class ToolbarComponent implements OnInit {
   @Output() storyTypeSelectEmitter: EventEmitter<StoryType> = new EventEmitter();
 
   /**
+   * Stores the current story type
+   * @type {StoryType}
+   * @memberof ToolbarComponent
+   */
+  currentStoryType: StoryType = 'topstories';
+
+  /**
    * Array of literal types used in the template to display them in the toolbar
    * @type {((StoryType)[])}
    * @memberof ToolbarComponent
@@ -44,6 +51,7 @@ export class ToolbarComponent implements OnInit {
    * @param storyType The story type selected from the toolbar
    */
   onStoryClickHandler(storyType: StoryType) {
+    this.currentStoryType = storyType;
     this.storyTypeSelectEmitter.emit(storyType);
   }
 }

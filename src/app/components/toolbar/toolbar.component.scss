@@ -28,9 +28,19 @@
       font-size: 2rem;
     }
 
+    .story-disabled {
+      cursor:auto;
+      color: rgba(255,255,255,.3);
+    }
+
     .story:hover {
       text-decoration: underline;
       color: rgb(128, 224, 245);
+    }
+
+    .story-disabled:hover {
+      text-decoration: none;
+      color: rgba(255,255,255,.3);
     }
   }
 }

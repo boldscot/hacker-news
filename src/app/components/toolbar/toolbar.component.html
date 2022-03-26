@@ -17,7 +17,8 @@
 
     <div *ngIf="breakPoint !== 'XSmall' && breakPoint !== 'Small'
       && breakPoint !== 'Medium'" class="stories">
-      <div class="story" *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
+      <div class="story" [class.story-disabled]="type === currentStoryType"
+        *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
         {{ type }}
       </div>
     </div>
