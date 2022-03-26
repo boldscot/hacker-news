@@ -81,6 +81,7 @@ export class ItemGridComponent implements OnInit, OnDestroy {
     ).subscribe((isIncrement: boolean) => {
       this.gridFirstItemIndex = isIncrement ? this.gridFirstItemIndex + this.gridLayout.gridSize
         : this.gridFirstItemIndex - this.gridLayout.gridSize;
+      if(this.gridFirstItemIndex < 0) this.gridFirstItemIndex = 0;
     });
   }
 
