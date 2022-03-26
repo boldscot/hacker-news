@@ -11,7 +11,7 @@ Due to unfamiliarity with Firebase, with the main concern of somebody being able
 ## Angular
 I chose to use Angular as I have more experience with it over REACT.
 I left routing out of the App as I knew I was only implementing a front page, routing would need to be added to extend the application.
-I used Angualr material modules as I have some past experience with them.
+I used Angular material modules as I have some past experience with them.
 
 # Tests
 ## Running unit tests
