@@ -3,6 +3,10 @@ import { GetUrlDomainPipe } from './get-url-domain.pipe';
 describe('GetUrlDomainPipe', () => {
   const pipe = new GetUrlDomainPipe();
 
+  it('create an instance', () => {
+    expect(pipe).toBeTruthy();
+  });
+
   it('should return google.com', () => {
     expect(pipe.transform('https://www.google.com')).toEqual('google.com');
   });
