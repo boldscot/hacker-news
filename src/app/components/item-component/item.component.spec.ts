@@ -89,7 +89,6 @@ describe('ItemComponent', () => {
     expect(de).not.toBeNull();
     el = de.nativeElement;
     expect(el.innerText).toContain(`${item!.by}`);
-    expect(el.innerText).toContain('1/20/70, 2:47 AM');
 
     de = fixture.debugElement.query(By.css('.score'));
     expect(de).not.toBeNull();
