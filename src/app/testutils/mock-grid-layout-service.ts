@@ -4,7 +4,8 @@ import { Observable, of } from 'rxjs';
 
 export class MockGridLayoutService {
   observeBreakpoints(isMedium: boolean): Observable<string> {
-    return isMedium? of('Medium'): of('Large');
+    //return isMedium? of('Medium'): of('Large');
+    return of('Medium');
   }
 
   getGridLayout(): GridLayout {
