@@ -89,11 +89,20 @@ export class GridLayoutService {
     }
   }
 
+  /**
+   * Gets the literal string break point from the breakpoint mappings
+   * @param breakPoint The media query e.g (min-width: 1920px)
+   * @returns string
+   */
   getbreakpointMapping(breakPoint: string): string {
     const bp: string | undefined = this.breakPointMappings.get(breakPoint);
     return bp? bp: 'Large';
   }
 
+  /**
+   * Gets the media queries from the breakpiont mappings
+   * @returns string[]
+   */
   getBreakPoints(): string[] {
     return Array.from(this.breakPointMappings.keys());
   }
