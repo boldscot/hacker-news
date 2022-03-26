@@ -66,14 +66,14 @@ describe('GridLayoutService', () => {
     gridLayout = service.getGridLayout('Small');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('1');
-    expect(gridLayout.gridSize).toBe(9);
+    expect(gridLayout.gridSize).toBe(12);
     expect(gridLayout.gutterSize).toEqual('1rem');
     expect(gridLayout.rowHeight).toEqual('11rem');
 
     gridLayout = service.getGridLayout('XSmall');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('1');
-    expect(gridLayout.gridSize).toBe(9);
+    expect(gridLayout.gridSize).toBe(12);
     expect(gridLayout.gutterSize).toEqual('1rem');
     expect(gridLayout.rowHeight).toEqual('11rem');
 

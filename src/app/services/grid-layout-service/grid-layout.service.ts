@@ -75,7 +75,7 @@ export class GridLayoutService {
           columns: '1',
           rowHeight: '11rem',
           gutterSize: '1rem',
-          gridSize: 9
+          gridSize: 12
         }
       }
 
