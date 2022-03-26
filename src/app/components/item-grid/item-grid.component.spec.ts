@@ -8,6 +8,7 @@ import { ItemGridComponent } from './item-grid.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { of, Subscription } from 'rxjs';
 
 describe('ItemGridComponent', () => {
   let component: ItemGridComponent;
@@ -124,6 +125,34 @@ describe('ItemGridComponent', () => {
       .toBe('1rem');
   });
 
+  it('#refreshHandler() should reset the grid index and update the stories$ Observable', () => {
+    component.gridFirstItemIndex = 90;
+    component.stories$ = of(null);
+    fixture.detectChanges();
+
+    let sub: Subscription = component.stories$.subscribe((ids: number[] | null) => {
+      expect(ids).toBeFalsy();
+    });
+    sub.unsubscribe();
+    component.refreshHandler();
+    fixture.detectChanges();
+
+    component.stories$.subscribe((ids: number[] | null) => {
+      expect(ids).toBeTruthy();
+      expect(ids?.length).toBe(9);
+    });
+    expect(component.gridFirstItemIndex).toBe(0);
+  });
+
+  it('should invoke the refresh handler when the button is clicked', () => {
+    const de: DebugElement = fixture.debugElement.query(By.css('.refresh'));
+    const spy: jasmine.Spy = spyOn(component, 'refreshHandler').and.callFake(() => true);
+    de.triggerEventHandler('click', null);
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy.calls.first().returnValue).toBeTrue()
+  });
+
   it('the grid should have 9 grid tiles which contain an item each', () => {
     let des: DebugElement[] = fixture.debugElement.queryAll(By.directive(MatGridTile));
     expect(des).not.toBeNull();
@@ -132,6 +161,5 @@ describe('ItemGridComponent', () => {
     des = fixture.debugElement.queryAll(By.css('.item'));
     expect(des).not.toBeNull();
     expect(des.length).toBe(9);
-
   });
 });
