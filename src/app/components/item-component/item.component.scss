@@ -12,9 +12,13 @@
     flex-direction: column;
 
     .contrib {
-      font-style: italic;
       text-align: right;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+
+      span {
+        font-style: italic;
+        font-weight: 550;
+      }
     }
 
     .title {
