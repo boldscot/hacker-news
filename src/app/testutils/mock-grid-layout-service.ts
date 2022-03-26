@@ -1,5 +1,5 @@
 import { GridLayout } from './../model';
-import { BreakpointState, Breakpoints } from '@angular/cdk/layout';
+import { Breakpoints } from '@angular/cdk/layout';
 import { Observable, of } from 'rxjs';
 
 export class MockGridLayoutService {
