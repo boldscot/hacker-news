@@ -6,8 +6,9 @@ import * as moment from 'moment';
 })
 export class TimeAgoPipe implements PipeTransform {
   transform(unixTime: number): unknown {
-    const currentUnixTime: number = Math.floor(Date.now()/1000)
-    return moment(unixTime).from(currentUnixTime);
+    const pastDate: Date = new Date(unixTime*1000);
+    const nowDate: Date = new Date(Date.now());
+    return moment(pastDate).from(nowDate);
   }
 
 }

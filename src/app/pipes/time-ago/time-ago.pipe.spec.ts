@@ -50,15 +50,15 @@ describe('TimeAgoPipe', () => {
 
 function getUnixPastTimeMinutes(minutesAgo?: number) {
   if (minutesAgo)
-    return Math.floor(Date.now()/1000)-(minutesAgo*60*1000);
+    return (Date.now()/1000)-(minutesAgo*60);
 
-    return Math.floor(Date.now()/1000);
+    return Date.now()/1000;
 }
 
 function getUnixPastTimeHours(hoursAgo: number) {
-  return Math.floor(Date.now()/1000)-(hoursAgo*60*60*1000);
+  return Math.floor(Date.now()/1000)-(hoursAgo*60*60);
 }
 
 function getUnixPastTimeDays(daysAgo: number) {
-  return Math.floor(Date.now()/1000)-(daysAgo*24*60*60*1000);
+  return Math.floor(Date.now()/1000)-(daysAgo*24*60*60);
 }
