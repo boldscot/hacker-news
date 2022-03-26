@@ -49,9 +49,7 @@ export class GridLayoutService {
    * @returns GridLayout
    */
   getGridLayout(breakPoint: string): GridLayout {
-    const screenSize: string = this.breakPointMappings.get(breakPoint) ?? 'unknown';
-
-    switch (screenSize) {
+    switch (breakPoint) {
       case 'XLarge':
       case 'Large': {
         return {

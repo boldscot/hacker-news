@@ -41,7 +41,7 @@ describe('GridLayoutService', () => {
   });
 
   it('#getGridSettings() should return GridLayout', () => {
-    let gridLayout: GridLayout = service.getGridLayout(Breakpoints.XLarge);
+    let gridLayout: GridLayout = service.getGridLayout('XLarge');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('3');
     expect(gridLayout.gridSize).toBe(27);
@@ -49,28 +49,28 @@ describe('GridLayoutService', () => {
     expect(gridLayout.rowHeight).toEqual('11rem');
 
 
-    gridLayout = service.getGridLayout(Breakpoints.Large);
+    gridLayout = service.getGridLayout('Large');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('3');
     expect(gridLayout.gridSize).toBe(27);
     expect(gridLayout.gutterSize).toEqual('1rem');
     expect(gridLayout.rowHeight).toEqual('11rem');
 
-    gridLayout = service.getGridLayout(Breakpoints.Medium);
+    gridLayout = service.getGridLayout('Medium');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('2');
     expect(gridLayout.gutterSize).toEqual('1rem');
     expect(gridLayout.rowHeight).toEqual('11rem');
     expect(gridLayout.gridSize).toBe(18);
 
-    gridLayout = service.getGridLayout(Breakpoints.Small);
+    gridLayout = service.getGridLayout('Small');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('1');
     expect(gridLayout.gridSize).toBe(9);
     expect(gridLayout.gutterSize).toEqual('1rem');
     expect(gridLayout.rowHeight).toEqual('11rem');
 
-    gridLayout = service.getGridLayout(Breakpoints.XSmall);
+    gridLayout = service.getGridLayout('XSmall');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('1');
     expect(gridLayout.gridSize).toBe(9);
@@ -78,7 +78,7 @@ describe('GridLayoutService', () => {
     expect(gridLayout.rowHeight).toEqual('11rem');
 
     // Covering the unknown branch, it should use the default swicth branch
-    gridLayout = service.getGridLayout('');
+    gridLayout = service.getGridLayout('xcxc');
     expect(gridLayout).not.toBeNull();
     expect(gridLayout.columns).toEqual('3');
     expect(gridLayout.gridSize).toBe(27);
