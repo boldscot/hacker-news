@@ -27,7 +27,11 @@ export class ItemGridComponent implements OnInit, OnDestroy {
    */
   gridLayout: GridLayout;
 
-
+  /**
+   * Stores the currently displayed story type
+   * @type {StoryType}
+   * @memberof ItemGridComponent
+   */
   currentStoryType: StoryType = 'topstories';
 
   /**
