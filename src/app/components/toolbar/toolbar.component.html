@@ -10,7 +10,8 @@
       stories
     </button>
     <mat-menu class="menu" #storiesMenu="matMenu">
-      <button class="menu-item" mat-menu-item *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
+      <button [disabled]="type === currentStoryType" class="menu-item"
+        mat-menu-item *ngFor="let type of storyTypes" (click)="onStoryClickHandler(type)">
         {{ type }}
       </button>
     </mat-menu>
