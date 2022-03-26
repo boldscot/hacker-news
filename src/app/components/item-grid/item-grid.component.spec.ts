@@ -93,6 +93,14 @@ describe('ItemGridComponent', () => {
     expect(spy).toHaveBeenCalled();
   }));
 
+  it('gridFirstItemIndex to be set to 0', fakeAsync(() => {
+    component.gridFirstItemIndex = 0;
+    component.updateFirstGridIndex(false);
+    // debounce Time
+    tick(300);
+    expect(component.gridFirstItemIndex).toBe(0);
+  }));
+
   it('clicking the more button should increment the gridFirstItemIndex property', fakeAsync(() => {
     component.gridFirstItemIndex = 40;
     let de: DebugElement = fixture.debugElement.query(By.css('.more'));
