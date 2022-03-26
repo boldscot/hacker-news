@@ -100,8 +100,16 @@ export class ItemGridComponent implements OnInit, OnDestroy {
    * emission from the updateGridFirstItemIndex$ Subject
    * @param isIncrement Boolean flag that signals an increment or decrement in the grid index
    */
-  updateFirstGridIndex(isIncrement: boolean) {
+  updateFirstGridIndex(isIncrement: boolean): void {
     this.updateGridFirstItemIndex$.next(isIncrement);
+  }
+
+  /**
+   * Event handler for the refresh button click
+   */
+  refreshHandler(): void {
+    this.gridFirstItemIndex = 0;
+    this.stories$ = this.hackerNewsService.getStories(this.currentStoryType);
   }
 
   /**
